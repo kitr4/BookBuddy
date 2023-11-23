@@ -21,9 +21,11 @@ namespace BookBuddy.Views
     /// </summary>
     /// 
 
-    MainViewModel mvm = new MainViewModel();
+    
     public partial class MainWindow : Window
     {
+        MainViewModel mvm = new MainViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
