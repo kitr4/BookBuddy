@@ -31,5 +31,6 @@ namespace BookBuddy.Views
             InitializeComponent();
             DataContext = mvm;
         }
+
     }
 }
