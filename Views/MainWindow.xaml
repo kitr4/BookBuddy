@@ -3,20 +3,75 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookBuddy.Views"
+        xmlns:local="clr-namespace:BookBuddy.ViewModels"
         mc:Ignorable="d"
         Title="Booky" Height="600" Width="800">
     <Grid
         Background="#FFF19E19"
-        
         >
-        <Button Content="Login" FontFamily="Cascadia Mono" HorizontalAlignment="Left" Margin="251,411,0,0" VerticalAlignment="Top" Height="49" Width="110" Background="#FFFFEFEF" Click="Button_Click" Foreground="#FF4D0404" BorderBrush="#FF607AC9"/>
-        <Button Content="Create user" FontFamily="Cascadia Mono" HorizontalAlignment="Left" Margin="418,411,0,0" VerticalAlignment="Top" Height="49" Width="110" Background="#FFFFEFEF" Click="Button_Click" Foreground="#FF4D0404" BorderBrush="#FF607AC9"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="150,268,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono" Background="White"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="150,313,0,0" VerticalAlignment="Top" FontFamily="Cascadia Mono" Background="White"/>
-        <TextBox HorizontalAlignment="Left" FontFamily="Cascadia Mono" Margin="251,268,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="277" Height="26"/>
-        <TextBox HorizontalAlignment="Left" FontFamily="Cascadia Mono" Margin="251,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="277" Height="24"/>
-        <Label Content="Booky or BookBuddy" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Cascadia Mono" Background="#FFF19E19" Height="94" Width="628" FontWeight="Bold" FontSize="50" TextBlock.TextAlignment="Center" Foreground="White"/>
+        <Button 
+            Content="Login" 
+            FontFamily="Cascadia Mono" 
+            HorizontalAlignment="Left" 
+            Margin="251,411,0,0" 
+            VerticalAlignment="Top" 
+            Height="49" Width="110" 
+            Background="#FFFFEFEF" 
+            Foreground="#FF4D0404" 
+            BorderBrush="#FF607AC9"/>
+        <Button 
+            Content="Create user" 
+            FontFamily="Cascadia Mono" 
+            HorizontalAlignment="Left" 
+            Margin="418,411,0,0" 
+            VerticalAlignment="Top" 
+            Height="49" Width="110" 
+            Background="#FFFFEFEF"  
+            Foreground="#FF4D0404" 
+            BorderBrush="#FF607AC9"/>
+        <Label 
+            Content="Username" 
+            HorizontalAlignment="Left" 
+            Margin="150,268,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Cascadia Mono" 
+            Background="White"/>
+        <Label 
+            Content="Password" 
+            HorizontalAlignment="Left" 
+            Margin="150,313,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Cascadia Mono" 
+            Background="White"/>
+        <TextBox 
+            HorizontalAlignment="Left" 
+            FontFamily="Cascadia Mono" 
+            Margin="251,268,0,0" 
+            TextWrapping="Wrap" 
+            Text="{Binding Username}"  
+            VerticalAlignment="Top" 
+            Width="277" 
+            Height="26"/>
+        <TextBox 
+            HorizontalAlignment="Left" 
+            FontFamily="Cascadia Mono" 
+            Margin="251,313,0,0" 
+            TextWrapping="Wrap" 
+            Text="{Binding Username}" 
+            VerticalAlignment="Top" 
+            Width="277" 
+            Height="24"/>
+        <Label 
+            Content="Booky or BookBuddy" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top" 
+            FontFamily="Cascadia Mono" 
+            Background="#FFF19E19" 
+            Height="94" Width="628" 
+            FontWeight="Bold" 
+            FontSize="50" 
+            TextBlock.TextAlignment="Center" 
+            Foreground="White"/>
 
     </Grid>
 </Window>

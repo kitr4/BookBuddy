@@ -11,7 +11,7 @@ namespace BookBuddy.Models
         // Private backingfields
         private int _userId;
         private string _userName;
-        private string _passWord;
+        private string _password;
         private string _eMail;
         private DateTime _birthdate;
 
@@ -19,7 +19,7 @@ namespace BookBuddy.Models
         // Properties
         public int UserId { get => _userId; set => _userId = value; }
         public string UserName { get => _userName; set => _userName = value; }
-        public string PassWord { get => _passWord; set => _passWord = value; }
+        public string Password { get => _password; set => _password = value; }
         public string EMail { get => _eMail; set => _eMail = value; }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
 
@@ -27,7 +27,7 @@ namespace BookBuddy.Models
         {
             UserId = userId;
             UserName = userName;
-            PassWord = passWord;
+            Password = passWord;
             EMail = eMail;
             Birthdate = birthdate;
         }
