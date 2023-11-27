@@ -19,10 +19,11 @@ namespace BookBuddy.Views
 
     public partial class MainWindow : Window
     {
-        MainViewModel mvm = new MainViewModel();
+        
         public MainWindow()
-        {
+        { 
             InitializeComponent();
+            MainViewModel mvm = new MainViewModel();
             DataContext = mvm;
         }
 
