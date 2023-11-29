@@ -11,5 +11,6 @@
         <Frame x:Name="LoginPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="StartPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />
+        <Border BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Window>

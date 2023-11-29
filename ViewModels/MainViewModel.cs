@@ -16,13 +16,15 @@ namespace BookBuddy.ViewModels
     {
         public DataService DS = new DataService();
 
+        private User currentUser { get; set; }
+
         [ObservableProperty]
         private string? username;
         [ObservableProperty]
         private string? password;
 
         [ObservableProperty]
-        private bool? isValidated = false;
+        private bool isValidated = false;
 
 
 
@@ -32,6 +34,10 @@ namespace BookBuddy.ViewModels
             await Task.Run(async () =>
             {
                 IsValidated = await DS.VerifyCredentials(Username, Password);
+                if (IsValidated)
+                {
+                    
+                }
             });
         }
         [RelayCommand]
