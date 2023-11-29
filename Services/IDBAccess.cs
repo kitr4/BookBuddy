@@ -11,5 +11,6 @@ namespace BookBuddy.Services
         Task<IEnumerable<T>> LoadData<T, U>(string sql, U parameters);
         Task SaveData<T>(string sql, T parameters);
         Task SaveBulk<T>(T parameters);
+        //Task<IEnumerable<T2>> LoadData<T1, T2>(string v, object value);
     }
 }

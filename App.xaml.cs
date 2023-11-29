@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookBuddy.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace BookBuddy
     /// </summary>
     public partial class App : Application
     {
+        public MainViewModel mvm { get; } = new MainViewModel();
+
+        public App()
+        {
+            InitializeComponent();
+             
+        }
     }
 }

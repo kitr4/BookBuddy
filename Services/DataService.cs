@@ -16,17 +16,21 @@ namespace BookBuddy.Services
         private static readonly string connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
         SqlConnection connection;
         
-
-        public async Task LogIn(string username, string password)
+        public async Task<User> LogIn(string username, string password)
         {
-            bool verified = await VerifyCredentials(username, password);
-            if (verified)
+            int userId = await VerifyCredentials(username, password);
+            User user = new User();
+            if (userId != 0)
             {
-                LoadUser();
+               user = (User) await InstantiateUser(userId);
+               return user;
             }
+            return user;
+
         }
-        public async Task<bool> VerifyCredentials(string username, string password)
+        public async Task<int> VerifyCredentials(string username, string password)
         {
+           
             connection = new SqlConnection(connectionString);
             using (connection)
             {
@@ -43,21 +47,20 @@ namespace BookBuddy.Services
                     {
                         if (reader.HasRows)
                         {
-                            reader.GetInt32(reader.GetOrdinal("UserId"));
-                                         
+                            int userid = reader.GetInt32(reader.GetOrdinal("UserId"));
+                            return userid;
+
                         }
-                            
-                        else                       
-                            return false;
+                        else
+                            return 0;
                     }
                 }
-                
             }
         }
 
-        public async Task<IEnumerable<User>> LoadUser(int UserId, SqlConnection connection, SqlDataReader reader)
+        public async Task<IEnumerable<User>> InstantiateUser(int userid)
         {
-            reader.
+           return await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userid });
         }
     }
 }

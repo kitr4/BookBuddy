@@ -12,23 +12,27 @@ namespace BookBuddy.Models
         private int _userId;
         private string _userName;
         private string _password;
-        private string _eMail;
+        private string _email;
         private DateTime _birthdate;
 
 
         // Properties
         public int UserId { get => _userId; set => _userId = value; }
-        public string UserName { get => _userName; set => _userName = value; }
+        public string Username { get => _userName; set => _userName = value; }
         public string Password { get => _password; set => _password = value; }
-        public string EMail { get => _eMail; set => _eMail = value; }
+        public string Email { get => _email; set => _email = value; }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
 
+        public User()
+        {
+
+        }
         public User(int userId, string userName, string passWord, string eMail, DateTime birthdate)
         {
             UserId = userId;
-            UserName = userName;
+            Username = userName;
             Password = passWord;
-            EMail = eMail;
+            Email = eMail;
             Birthdate = birthdate;
         }
 

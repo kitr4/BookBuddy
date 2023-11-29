@@ -29,15 +29,12 @@ namespace BookBuddy.ViewModels
 
 
         // METHODS
-        public async Task QueryValidation(string Username, string Password)
+        public async Task QueryValidation(string username, string password)
         {
             await Task.Run(async () =>
             {
-                IsValidated = await DS.VerifyCredentials(Username, Password);
-                if (IsValidated)
-                {
-                    
-                }
+                currentUser = await DS.LogIn(username, password);
+                Password = currentUser.Username;
             });
         }
         [RelayCommand]
