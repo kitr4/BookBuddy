@@ -10,11 +10,12 @@ namespace BookBuddy.Services
     public class DataService
     {
         private static readonly string connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
-        SqlConnection connection = new SqlConnection(connectionString);
+        SqlConnection connection;
 
 
         public async Task<bool> VerifyCredentials(string username, string password)
         {
+            connection = new SqlConnection(connectionString);
             using (connection)
             {
                 connection.Open();
@@ -27,15 +28,14 @@ namespace BookBuddy.Services
                     command.Parameters.AddWithValue("@PassWord", password);
 
                     using (SqlDataReader reader = command.ExecuteReader())
-                    if (reader.HasRows)
                     {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        if (reader.HasRows)
+                            return true;
+                        else                       
+                            return false;
                     }
                 }
+                
             }
         }
     }

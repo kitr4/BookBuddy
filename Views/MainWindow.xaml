@@ -36,7 +36,7 @@
         </Style>
     </Window.Resources>
     <Grid
-        Background="#FFF19E19"
+        Background="#FFF19E"
         >
         <Button 
             Content="Log in" 
@@ -83,16 +83,16 @@
             Width="277" 
             Height="21"/>
         <Label 
-            Content="Booky or BookBuddy" 
-            HorizontalAlignment="Center" 
+            Content="BookBuddy" 
+            HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             FontFamily="Cascadia Mono" 
-            Background="#FFF19E19" 
-            Height="94" Width="628" 
+            Background="#FFF19E" 
+            Height="63" Width="284" 
             FontWeight="Bold" 
-            FontSize="50" 
+            FontSize="16" 
             TextBlock.TextAlignment="Center" 
-            Foreground="White"/>
+            Foreground="Teal"/>
         <TextBox 
             HorizontalAlignment="Left" 
              FontFamily="Cascadia Mono" 
@@ -106,10 +106,12 @@
             Content="       " 
             Style="{StaticResource CustomButtonStyle}"
             HorizontalAlignment="Left" 
-            Margin="674,128,0,0" 
+            Margin="36,43,0,0" 
             VerticalAlignment="Top"
             IsEnabled="{Binding IsValidated, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             />
-        
+        <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+
     </Grid>
 </Window>

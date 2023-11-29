@@ -26,6 +26,7 @@ namespace BookBuddy.ViewModels
 
 
 
+        // METHODS
         public async Task QueryValidation(string Username, string Password)
         {
             await Task.Run(async () =>
