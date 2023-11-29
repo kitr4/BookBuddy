@@ -25,7 +25,19 @@ namespace BookBuddy.Views
             InitializeComponent();
             MainViewModel mvm = new MainViewModel();
             DataContext = mvm;
+
+            // The start page is loaded into the window 
+            LoginPage.Navigate(new LoginPage());
+        }
+        
+        public void NavigateToStartPage()
+        {
+            StartPage.Navigate(new StartPage());
         }
 
+        public void NavigateToCreateUserPage()
+        {
+            CreateUserPage.Navigate(new CreateUserPage());
+        }
     }
 }
