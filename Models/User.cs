@@ -35,6 +35,14 @@ namespace BookBuddy.Models
             Email = eMail;
             Birthdate = birthdate;
         }
+        // Just a test-constructor:
+        public User(int userId, string userName, string passWord, string eMail)
+        {
+            UserId = userId;
+            Username = userName;
+            Password = passWord;
+            Email = eMail;
+        }
 
     }
 }

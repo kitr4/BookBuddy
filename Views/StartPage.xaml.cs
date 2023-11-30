@@ -21,9 +21,10 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class StartPage : Page
     {
-        public StartPage()
+        public StartPage(MainViewModel mvm)
         {
             InitializeComponent();
+            DataContext = mvm;
         }
     }
 }

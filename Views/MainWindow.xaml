@@ -3,15 +3,97 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookBuddy"
+        xmlns:local="clr-namespace:BookBuddy.Views" xmlns:viewmodels="clr-namespace:BookBuddy.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        DataContext="{Binding Source={x:Reference Name=App}, Path=mvm}"
         Title="Booky" Height="600" Width="800">
 
     <Grid>
         <Frame x:Name="LoginPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="StartPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />
-        <Border BorderBrush="Black" BorderThickness="1"/>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <Grid
+     Background="#FFF19E"
+     >
+                <Button 
+         Content="Log in" 
+         FontFamily="Cascadia Mono" 
+         HorizontalAlignment="Left" 
+         Margin="251,411,0,0" 
+         VerticalAlignment="Top" 
+         Height="49" Width="110" 
+         Background="#FFFFEFEF" 
+         Foreground="#FF4D0404" 
+         BorderBrush="#FF607AC9"
+         Command="{Binding ButtonLogInCommand}"
+         />
+                <Button 
+         Content="Create user" 
+         FontFamily="Cascadia Mono" 
+         HorizontalAlignment="Left" 
+         Margin="418,411,0,0" 
+         VerticalAlignment="Top" 
+         Height="49" Width="110" 
+         Background="#FFFFEFEF"  
+         Foreground="#FF4D0404" 
+         BorderBrush="#FF607AC9" 
+         />
+                <Label 
+         Content="Username" 
+         HorizontalAlignment="Left" 
+         Margin="150,268,0,0" 
+         VerticalAlignment="Top" 
+         FontFamily="Cascadia Mono" 
+         Background="White"/>
+                <Label 
+         Content="Password" 
+         HorizontalAlignment="Left" 
+         Margin="150,313,0,0" 
+         VerticalAlignment="Top" 
+         FontFamily="Cascadia Mono" 
+         Background="White"/>
+                <TextBox 
+         HorizontalAlignment="Left" 
+         FontFamily="Cascadia Mono" 
+         Margin="251,268,0,0" 
+         TextWrapping="Wrap" 
+         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+         VerticalAlignment="Top" 
+         Width="277" 
+         Height="21"/>
+                <Label 
+         Content="BookBuddy" 
+         HorizontalAlignment="Left" 
+         VerticalAlignment="Top" 
+         FontFamily="Cascadia Mono" 
+         Background="#FFF19E" 
+         Height="63" Width="284" 
+         FontWeight="Bold" 
+         FontSize="16" 
+         TextBlock.TextAlignment="Center" 
+         Foreground="Teal"/>
+                <TextBox 
+         HorizontalAlignment="Left" 
+          FontFamily="Cascadia Mono" 
+             Margin="251,313,0,0" 
+         TextWrapping="Wrap" 
+             Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+              VerticalAlignment="Top" 
+                 Width="277" 
+             Height="21"/>
+                <Button 
+         Content="       " 
+         
+         HorizontalAlignment="Left" 
+         Margin="36,43,0,0" 
+         VerticalAlignment="Top"
+         IsEnabled="{Binding IsValidated, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+         />
+                <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
+                <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+                <TextBlock HorizontalAlignment="Left" Margin="183,214,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Birthdate}" VerticalAlignment="Top"/>
+
+            </Grid>
+        </Border>
     </Grid>
 </Window>

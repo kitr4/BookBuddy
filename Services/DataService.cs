@@ -1,66 +1,107 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BookBuddy.Models;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using BookBuddy.ViewModels;
-using BookBuddy.Models;
 
 namespace BookBuddy.Services
 {
-    public class DataService 
-   
+    public class DataService
+
     {
-        readonly IDBAccess db;
+        readonly DBAccess db = new();
         private static readonly string connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
         SqlConnection connection;
-        
+
         public async Task<User> LogIn(string username, string password)
         {
             int userId = await VerifyCredentials(username, password);
-            User user = new User();
-            if (userId != 0)
-            {
-               user = (User) await InstantiateUser(userId);
-               return user;
-            }
-            return user;
+
+            return await InstantiateUser(userId);
 
         }
+
         public async Task<int> VerifyCredentials(string username, string password)
         {
-           
-            connection = new SqlConnection(connectionString);
-            using (connection)
+            return await Task.Run(() =>
             {
-                connection.Open();
-                // connect.Open();
-                using (SqlCommand command = new SqlCommand("EXEC spValidation", connection))
+                int userId = 0;
+                using (connection = new SqlConnection(connectionString))
                 {
-                    //command.Parameters.AddWithValue;
-                    command.Parameters.AddWithValue("@Username", username);
-                    
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("spValidation", connection))
                     {
-                        if (reader.HasRows)
-                        {
-                            int userid = reader.GetInt32(reader.GetOrdinal("UserId"));
-                            return userid;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Username", username);
+                        command.Parameters.AddWithValue("@Password", password);
 
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    userId = reader.GetInt32(reader.GetOrdinal("UserId"));
+                                }
+                            }
                         }
-                        else
-                            return 0;
                     }
                 }
-            }
+                return userId;
+            });
         }
 
-        public async Task<IEnumerable<User>> InstantiateUser(int userid)
+
+        //public async Task<int> VerifyCredentials(string username, string password)
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        connection = new SqlConnection(connectionString);
+        //        using (connection)
+        //        {
+        //            connection.Open();
+        //            // connect.Open();
+        //            using (SqlCommand command = new SqlCommand("EXEC spValidation", connection))
+        //            {
+        //                //command.Parameters.AddWithValue;
+        //                command.Parameters.AddWithValue("@Username", username);
+
+        //                command.Parameters.AddWithValue("@Password", password);
+
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    if (reader.HasRows)
+        //                    {
+        //                        int userid = reader.GetInt32(reader.GetOrdinal("UserId"));
+        //                        return userid;
+        //                    }
+        //                    else
+        //                    {
+        //                        return 0;
+        //                    }
+        //                }
+        //            }
+
+        //        }
+
+        //    });
+        //    return 0;
+
+
+        //}
+
+        public async Task<User> InstantiateUser(int userid)
         {
-           return await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userid });
+            User blankUser = new(0, "EMPTY USER", "EMPTY USER", "EMPTY@EMPTY.COM");
+            var userlist = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userid });
+            if (userid != 0)
+            {
+                return userlist.ElementAt(0);
+            }
+            else
+            {
+                return blankUser;
+            }
         }
     }
 }

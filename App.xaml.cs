@@ -14,7 +14,6 @@ namespace BookBuddy
     /// </summary>
     public partial class App : Application
     {
-        public MainViewModel mvm { get; } = new MainViewModel();
 
         public App()
         {

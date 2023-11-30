@@ -3,16 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookBuddy" 
+      xmlns:local="clr-namespace:BookBuddy" xmlns:viewmodels="clr-namespace:BookBuddy.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="StartPage"
-      DataContext="{Binding Source={x:Static local:App.Current}, Path=Resources.mvm}">
+      Title="StartPage">
 
 
     <Grid>
-        <TextBox Text="Just to see if works."></TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="221,219,0,0" TextWrapping="Wrap" Text="{Binding currentUser}" VerticalAlignment="Top" Width="433" Height="81"/>
+        <TextBox Text="{Binding CurrentUser.Username}"></TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="221,219,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="433" Height="81"/>
+        <Label Content="{Binding CurrentUser.UserId}" HorizontalAlignment="Left" Margin="351,106,0,0" VerticalAlignment="Top" Height="35" Width="87"/>
+
 
     </Grid>
 </Page>

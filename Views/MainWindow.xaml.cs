@@ -21,19 +21,18 @@ namespace BookBuddy.Views
     {
         
         public MainWindow()
-        { 
+        {
+           
             InitializeComponent();
-            //MainViewModel mvm = new MainViewModel();
-            //DataContext = mvm;
-            // Vi prøver at bruge det samme MVM-objekt, så vi har instantieret den i App istedet, og databinder op på det samme objekt igennem XAML for hver page.
-
-            // The start page is loaded into the window 
-            LoginPage.Navigate(new LoginPage());
+            MainViewModel mvm = new MainViewModel();
+            DataContext = mvm;
+            //LoginPage.Navigate(new LoginPage(mvm));
         }
         
-        public void NavigateToStartPage()
+        public void NavigateToStartPage(MainViewModel mvm)
         {
-            StartPage.Navigate(new StartPage());
+            StartPage.Navigate(new StartPage(mvm));
+            StartPage.DataContext = mvm;
         }
 
         public void NavigateToCreateUserPage()
