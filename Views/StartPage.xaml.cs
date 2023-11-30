@@ -24,6 +24,7 @@ namespace BookBuddy.Views
         public StartPage()
         {
             InitializeComponent();
+            DataContext = MainViewModel.mvm;
         }
     }
 }

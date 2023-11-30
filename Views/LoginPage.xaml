@@ -51,7 +51,7 @@
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
             Command="{Binding ButtonLogInCommand}"
-            Click="NavigateToStartPage_Click"/>
+            />
         <Button 
             Content="Create user" 
             FontFamily="Cascadia Mono" 
@@ -116,6 +116,8 @@
             />
         <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+        <Button Click="NavigateToStartPage_Click" Content="Button" HorizontalAlignment="Left" Margin="91,214,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="216,214,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.UserId}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

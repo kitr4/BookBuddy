@@ -22,13 +22,15 @@ namespace BookBuddy.Views
         
         public MainWindow()
         {
-           
             InitializeComponent();
-            MainViewModel mvm = new MainViewModel();
-            DataContext = mvm;
-            LoginPage.Navigate(new LoginPage());
+            DataContext = MainViewModel.mvm;
+            //LoginPage.Navigate(new LoginPage());
         }
         
+        public void NavigateToLoginPage()
+        {
+            LoginPage.Navigate(new LoginPage());
+        }
         public void NavigateToStartPage()
         {
             StartPage.Navigate(new StartPage());
@@ -37,6 +39,25 @@ namespace BookBuddy.Views
         public void NavigateToCreateUserPage()
         {
             CreateUserPage.Navigate(new CreateUserPage());
+        }
+
+        private void NavigateToLoginPage_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming the parent window has a NavigateToStartPage method
+            ((MainWindow)Window.GetWindow(this)).NavigateToLoginPage();
+        }
+
+
+        private void NavigateToStartPage_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming the parent window has a NavigateToStartPage method
+            ((MainWindow)Window.GetWindow(this)).NavigateToStartPage();
+        }
+
+        private void NavigateToCreateUserPage_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming the parent window has a CreateUserPage method
+            ((MainWindow)Window.GetWindow(this)).NavigateToCreateUserPage();
         }
     }
 }

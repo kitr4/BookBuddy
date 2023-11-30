@@ -16,6 +16,9 @@ namespace BookBuddy.ViewModels
     {
         public DataService DS = new DataService();
 
+        // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
+        public static MainViewModel mvm { get; } = new MainViewModel();
+
         [ObservableProperty]
         private User? _currentUser;
         
