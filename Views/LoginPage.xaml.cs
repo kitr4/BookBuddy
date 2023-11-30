@@ -21,11 +21,10 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class LoginPage : Page
     {
-        MainViewModel mvm;
-        public LoginPage(MainViewModel mvm)
+        
+        public LoginPage()
         {
             InitializeComponent();
-            DataContext = mvm;
         }
 
         /* Hele denne metode skal laves om til en login metode, som navigere til startpage, 
@@ -33,7 +32,7 @@ namespace BookBuddy.Views
         private void NavigateToStartPage_Click(object sender, RoutedEventArgs e)
         {
             // Assuming the parent window has a NavigateToStartPage method
-            ((MainWindow)Window.GetWindow(this)).NavigateToStartPage(mvm);
+            ((MainWindow)Window.GetWindow(this)).NavigateToStartPage();
         }
 
         private void NavigateToCreateUserPage_Click(object sender, RoutedEventArgs e)

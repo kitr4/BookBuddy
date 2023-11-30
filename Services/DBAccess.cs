@@ -12,7 +12,6 @@ using Dapper;
 
 namespace BookBuddy.Services
 {
-   
     public class DBAccess :  IDBAccess
     {
         private readonly string? connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
@@ -23,7 +22,7 @@ namespace BookBuddy.Services
 
             return await conn.QueryAsync<T>(sql, parameters, commandType: CommandType.StoredProcedure);
         }
-
+             
         public async Task SaveData<T>(string sql, T parameters)
         {
             using IDbConnection conn = new SqlConnection(connectionString);

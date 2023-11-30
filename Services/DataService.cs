@@ -21,6 +21,7 @@ namespace BookBuddy.Services
 
         }
 
+
         public async Task<int> VerifyCredentials(string username, string password)
         {
             return await Task.Run(() =>
@@ -50,45 +51,6 @@ namespace BookBuddy.Services
                 return userId;
             });
         }
-
-
-        //public async Task<int> VerifyCredentials(string username, string password)
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        connection = new SqlConnection(connectionString);
-        //        using (connection)
-        //        {
-        //            connection.Open();
-        //            // connect.Open();
-        //            using (SqlCommand command = new SqlCommand("EXEC spValidation", connection))
-        //            {
-        //                //command.Parameters.AddWithValue;
-        //                command.Parameters.AddWithValue("@Username", username);
-
-        //                command.Parameters.AddWithValue("@Password", password);
-
-        //                using (SqlDataReader reader = command.ExecuteReader())
-        //                {
-        //                    if (reader.HasRows)
-        //                    {
-        //                        int userid = reader.GetInt32(reader.GetOrdinal("UserId"));
-        //                        return userid;
-        //                    }
-        //                    else
-        //                    {
-        //                        return 0;
-        //                    }
-        //                }
-        //            }
-
-        //        }
-
-        //    });
-        //    return 0;
-
-
-        //}
 
         public async Task<User> InstantiateUser(int userid)
         {

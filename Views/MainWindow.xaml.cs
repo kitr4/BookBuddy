@@ -26,13 +26,12 @@ namespace BookBuddy.Views
             InitializeComponent();
             MainViewModel mvm = new MainViewModel();
             DataContext = mvm;
-            //LoginPage.Navigate(new LoginPage(mvm));
+            LoginPage.Navigate(new LoginPage());
         }
         
-        public void NavigateToStartPage(MainViewModel mvm)
+        public void NavigateToStartPage()
         {
-            StartPage.Navigate(new StartPage(mvm));
-            StartPage.DataContext = mvm;
+            StartPage.Navigate(new StartPage());
         }
 
         public void NavigateToCreateUserPage()
