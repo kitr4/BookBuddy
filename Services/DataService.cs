@@ -30,12 +30,13 @@ namespace BookBuddy.Services
                 using (connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("spValidation", connection))
+                    using (SqlCommand command = new SqlCommand("spVerifyCredentials", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Password", password);
 
+                        // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -52,14 +53,15 @@ namespace BookBuddy.Services
             });
         }
 
-        public async Task<User> InstantiateUser(int userid)
+        public async Task<User> InstantiateUser(int userId)
         {
             User blankUser = new(0, "EMPTY USER", "EMPTY@EMPTY.COM");
 
-            var userlist = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userid });
-            if (userid != 0)
+            var userList = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
+
+            if (userId != 0)
             {
-                return userlist.ElementAt(0);
+                return userList.ElementAt(0);
             }
             else
             {
