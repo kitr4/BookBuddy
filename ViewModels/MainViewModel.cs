@@ -31,19 +31,15 @@ namespace BookBuddy.ViewModels
 
         [ObservableProperty]
         private bool isValidated = false;
-
-       
         
         // METHODS
         public async Task QueryValidation(string username, string password)
         {
-
             await Task.Run(async () =>
             {
                 CurrentUser = await DS.LogIn(username, password);
             });
         }
-
 
         [RelayCommand]
         public async Task ButtonLogIn()
