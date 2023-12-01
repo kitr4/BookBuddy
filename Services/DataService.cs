@@ -54,7 +54,8 @@ namespace BookBuddy.Services
 
         public async Task<User> InstantiateUser(int userid)
         {
-            User blankUser = new(0, "EMPTY USER", "EMPTY USER", "EMPTY@EMPTY.COM");
+            User blankUser = new(0, "EMPTY USER", "EMPTY@EMPTY.COM");
+
             var userlist = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userid });
             if (userid != 0)
             {
