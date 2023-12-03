@@ -106,18 +106,8 @@
                  VerticalAlignment="Top" 
                     Width="277" 
                 Height="21"/>
-        <Button 
-            Content="       " 
-            Style="{StaticResource CustomButtonStyle}"
-            HorizontalAlignment="Left" 
-            Margin="36,43,0,0" 
-            VerticalAlignment="Top"
-            IsEnabled="{Binding IsValidated, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            />
         <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
-        <Button Click="NavigateToStartPage_Click" Content="Button" HorizontalAlignment="Left" Margin="91,214,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="216,214,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.UserId}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

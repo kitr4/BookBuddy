@@ -28,9 +28,6 @@ namespace BookBuddy.ViewModels
         private string? _username;
         [ObservableProperty]
         private string? _password;
-
-        [ObservableProperty]
-        private bool isValidated = false;
         
         // METHODS
         public async Task QueryValidation(string username, string password)
