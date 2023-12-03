@@ -30,7 +30,7 @@ namespace BookBuddy.Services
                 using (connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("spValidation", connection))
+                    using (SqlCommand command = new SqlCommand("spVerifyCredentials", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("@Username", username);
