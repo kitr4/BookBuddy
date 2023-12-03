@@ -9,11 +9,34 @@
       Title="StartPage">
 
 
-    <Grid>
-        <TextBox Text="{Binding CurrentUser.Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBox HorizontalAlignment="Left" Margin="178,509,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="433" Height="81"/>
-        <Label Content="{Binding CurrentUser.UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="644,532,0,0" VerticalAlignment="Top" Height="35" Width="87"/>
+    <Grid
+        Background="#FFF19E"
+        >
+        <Label 
+            Content="BookBuddy" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            FontFamily="Cascadia Mono" 
+            Background="#FFF19E" 
+            Height="63" Width="284" 
+            FontWeight="Bold" 
+            FontSize="16" 
+            TextBlock.TextAlignment="Center" 
+            Foreground="Teal"/>
 
+
+
+        <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+        <Button Content="Search user" HorizontalAlignment="Left" Margin="0,91,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
+        <Button Content="My Library" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
+        <Button Content="Edit profile" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
+        <Button Content="Search books" HorizontalAlignment="Left" Margin="0,169,0,0" VerticalAlignment="Top" Height="19" Width="83"/>
+
+        <Image HorizontalAlignment="Left" Height="100" Margin="643,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"></Image>
+        <TextBlock HorizontalAlignment="Left" Margin="34,284,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="34,305,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="34,326,0,0" TextWrapping="Wrap" Text="UserId" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="34,347,0,0" TextWrapping="Wrap" Text="Birthdate" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
