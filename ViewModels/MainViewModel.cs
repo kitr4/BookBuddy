@@ -9,6 +9,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using BookBuddy.Services;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using System.Dynamic;
+using System.Xml.Serialization;
 
 namespace BookBuddy.ViewModels
 {
@@ -21,29 +23,23 @@ namespace BookBuddy.ViewModels
 
         [ObservableProperty]
         private User? _currentUser;
-        
 
         [ObservableProperty]
-        private string? username;
+        private string? _username;
         [ObservableProperty]
-        private string? password;
+        private string? _password;
 
         [ObservableProperty]
         private bool isValidated = false;
-
-       
         
         // METHODS
         public async Task QueryValidation(string username, string password)
         {
-
             await Task.Run(async () =>
             {
                 CurrentUser = await DS.LogIn(username, password);
-                Password = CurrentUser.Username;
             });
         }
-
 
         [RelayCommand]
         public async Task ButtonLogIn()
