@@ -1,4 +1,5 @@
 ﻿using BookBuddy.Models;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -67,6 +68,34 @@ namespace BookBuddy.Services
             {
                 return blankUser;
             }
+        }
+
+        public async Task CreateUser(User currentUser, string password)
+        {
+            await db.SaveData("spCreateUser", new { Username = currentUser.Username, Password = password, Email = currentUser.Email, Birthdate = currentUser.Birthdate });
+        }
+
+        public async Task<IEnumerable<Book>> SearchBook(Book currentBook)
+        {
+            
+            var books = await db.LoadData<Book, dynamic>("spSearchBook", new 
+            { Title = currentBook.Title, 
+                Description = currentBook.Description, 
+                Genre = currentBook.Genre, Year = 
+                currentBook.Year 
+            });
+
+            return books;
+
+        }
+
+        public async Task<IEnumerable<Book>> RetrieveLibrary(int userId)
+        {
+            var books = await db.LoadData<Book, dynamic>("spMyLibrary", new
+            {
+                UserId = userId
+            });
+            return books;
         }
     }
 }

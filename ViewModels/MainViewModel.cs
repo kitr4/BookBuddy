@@ -11,6 +11,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using System.Dynamic;
 using System.Xml.Serialization;
+using System.Collections.ObjectModel;
 
 namespace BookBuddy.ViewModels
 {
@@ -25,9 +26,16 @@ namespace BookBuddy.ViewModels
         private User? _currentUser;
 
         [ObservableProperty]
+        private Book? _currentBook;
+
+        [ObservableProperty]
         private string? _username;
         [ObservableProperty]
         private string? _password;
+
+        [ObservableProperty]
+        IEnumerable<Book> _bookList = new ObservableCollection<Book>();
+
         
         // METHODS
         public async Task QueryValidation(string username, string password)
@@ -35,13 +43,38 @@ namespace BookBuddy.ViewModels
             await Task.Run(async () =>
             {
                 CurrentUser = await DS.LogIn(username, password);
+                
             });
         }
 
+        // TO-DO:
+        public async Task InstantiateLibrary()
+        {
+            CurrentUser.Library = await DS.RetrieveLibrary(CurrentUser.UserId); 
+        }
+
+        #region Commands
         [RelayCommand]
         public async Task ButtonLogIn()
         {
             await QueryValidation(Username, Password);
+            
         }
+
+        [RelayCommand]
+        public async Task ButtonCreateUser()
+        {
+            await DS.CreateUser(CurrentUser, Password);
+            // await DS.CreateUser(CurrentUser);
+        }
+        [RelayCommand]
+        public async Task ButtonSearchBook()
+        {
+            BookList = await DS.SearchBook(CurrentBook);
+        }
+        
+        
+
+        #endregion;
     }
 }

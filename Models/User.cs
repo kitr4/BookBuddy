@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace BookBuddy.Models
         private string _userName;
         private string _email;
         private DateTime _birthdate;
+        private ObservableCollection<Book> _library = new ObservableCollection<Book>();
 
 
         // Properties
@@ -20,6 +22,8 @@ namespace BookBuddy.Models
         public string Username { get => _userName; set => _userName = value; }
         public string Email { get => _email; set => _email = value; }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
+
+        public ObservableCollection<Book>? Library { get => _library; set => _library = value; } 
 
         public User()
         {
