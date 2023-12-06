@@ -28,6 +28,9 @@ namespace BookBuddy.ViewModels
         private string? _username;
         [ObservableProperty]
         private string? _password;
+
+        [ObservableProperty]
+        private string? _consoleMessages;
         
         // METHODS
         public async Task QueryValidation(string username, string password)

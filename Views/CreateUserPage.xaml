@@ -50,8 +50,8 @@
             Background="#FFFFEFEF" 
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
-            Command="{Binding ButtonLogInCommand}"
-            />
+            
+            Click="ReturnToLoginPage_Click"/>
         <Button 
             Content="Create user" 
             FontFamily="Cascadia Mono" 
@@ -61,8 +61,7 @@
             Height="49" Width="110" 
             Background="#FFFFEFEF"  
             Foreground="#FF4D0404" 
-            BorderBrush="#FF607AC9" 
-            Click="NavigateToCreateUserPage_Click"/>
+            BorderBrush="#FF607AC9"/>
         <Label 
             Content="Username" 
             HorizontalAlignment="Left" 
@@ -159,6 +158,7 @@
             VerticalAlignment="Top" 
             Width="277" 
             Height="20"/>
+        <Button Click="ReturnToLoginPage_Click" Content="Button" HorizontalAlignment="Left" Margin="669,251,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

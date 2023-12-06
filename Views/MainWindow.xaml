@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="Booky" Height="600" Width="800">
     <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="LoginPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="StartPage" NavigationUIVisibility="Hidden" />
-        <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

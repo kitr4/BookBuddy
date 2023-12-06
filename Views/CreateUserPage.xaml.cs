@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookBuddy.ViewModels;
 
 namespace BookBuddy.Views
 {
@@ -23,6 +25,12 @@ namespace BookBuddy.Views
         public CreateUserPage()
         {
             InitializeComponent();
+        }
+
+        private void ReturnToLoginPage_Click(object sender, RoutedEventArgs e)
+        {
+            // Assuming the parent window has a NavigateToLoginPage method
+            ((MainWindow)Window.GetWindow(this)).GoBack();
         }
     }
 }
