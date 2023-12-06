@@ -19,13 +19,45 @@ namespace BookBuddy.Views
 
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = MainViewModel.mvm;
-            LoginPage.Navigate(new LoginPage());
+            NavigateToLoginPage();
+            MainFrame.Navigate(new LoginPage());
+            //NavigateToCreateUserPage();
         }
-     
+
+        // Navigation before login.
+
+        
+       
+
+        public void NavigateToStartPage()
+        {
+            MainFrame.Navigate(new StartPage());
+        }
+
+        public void NavigateToCreateUserPage()
+        {
+            MainFrame.Navigate(new CreateUserPage());
+        }
+
+        public void NavigateToLoginPage() 
+        {
+            MainFrame.Navigate(new LoginPage());
+        }
+        public void GoBack()
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
+        }
+
+        
+
+        // Navigation after login.
     }
 }

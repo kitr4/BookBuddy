@@ -21,7 +21,6 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class LoginPage : Page
     {
-        
         public LoginPage()
         {
             InitializeComponent();
@@ -29,7 +28,7 @@ namespace BookBuddy.Views
 
         public void NavigateToStartPage()
         {
-            StartPage.Navigate(new LoginPage());
+            // StartPage.Navigate(new LoginPage());
         }
         /* Hele denne metode skal laves om til en login metode, som navigere til startpage, 
            selve knappen skal ikke navigere til start page. */
