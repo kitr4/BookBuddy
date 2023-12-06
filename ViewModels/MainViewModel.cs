@@ -22,17 +22,25 @@ namespace BookBuddy.ViewModels
         // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
         public static MainViewModel mvm { get; } = new MainViewModel();
 
+        // This user is blank aside from when being filled out on CreateUserPage. Upon creation it will again be blank, so that the properties wont be set if another user is created in the same instance of the program.
         [ObservableProperty]
-        private User? _currentUser;
+        private UserCreate? _createdUser = new();
 
+        // Validated user will be set to CurrentUser on login.
+        [ObservableProperty]
+        private User? _currentUser = new();
+
+        // Selected book on a given list
         [ObservableProperty]
         private Book? _currentBook;
 
+        // properties used only on Log-in frame
         [ObservableProperty]
         private string? _username;
         [ObservableProperty]
         private string? _password;
 
+        // Represents a given list at a given time, blank to start with
         [ObservableProperty]
         IEnumerable<Book> _bookList = new ObservableCollection<Book>();
 
@@ -64,7 +72,18 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task ButtonCreateUser()
         {
-            await DS.CreateUser(CurrentUser, Password);
+            if(CreatedUser.isIdenticalPassword(CreatedUser))
+            {
+                if(CreatedUser.isFilledOut())
+                {
+                    CurrentUser.Username = CreatedUser.Username;
+                    CurrentUser.Email = CreatedUser.Email;
+                    CurrentUser.Birthdate = CreatedUser.Birthdate;
+                   await DS.CreateUser(CreatedUser, CreatedUser.Password1);
+                }
+            }
+           //TO-DO: Show error message for given slots not filled out or password length not being over 7.
+           
             // await DS.CreateUser(CurrentUser);
         }
         [RelayCommand]

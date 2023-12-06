@@ -1,5 +1,6 @@
 ﻿using BookBuddy.Models;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace BookBuddy.Services
 
         public async Task<User> InstantiateUser(int userId)
         {
-            User blankUser = new(0, "EMPTY USER", "EMPTY@EMPTY.COM");
+            User blankUser = new();
 
             var userList = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
 
@@ -64,38 +65,48 @@ namespace BookBuddy.Services
             {
                 return userList.ElementAt(0);
             }
+            // we should then return an error message saying user was not found, and after having returned blankUser delete it again, so it does not take up memory.
             else
             {
                 return blankUser;
             }
         }
 
-        public async Task CreateUser(User currentUser, string password)
+        public async Task CreateUser(UserCreate createdUser, string password)
         {
-            await db.SaveData("spCreateUser", new { Username = currentUser.Username, Password = password, Email = currentUser.Email, Birthdate = currentUser.Birthdate });
+            await db.SaveData("spCreateUser", new { createdUser.Username, Password = password, createdUser.Email, createdUser.Birthdate });
         }
 
-        public async Task<IEnumerable<Book>> SearchBook(Book currentBook)
+        public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)
         {
-            
+            ObservableCollection<Book> booklist = new();
             var books = await db.LoadData<Book, dynamic>("spSearchBook", new 
             { Title = currentBook.Title, 
                 Description = currentBook.Description, 
                 Genre = currentBook.Genre, Year = 
                 currentBook.Year 
             });
+            foreach (var book in books)
+            {
+                booklist.Add(book);
+            }
 
-            return books;
+            return booklist;
 
         }
 
-        public async Task<IEnumerable<Book>> RetrieveLibrary(int userId)
+        public async Task<ObservableCollection<Book>> RetrieveLibrary(int userId)
         {
+            ObservableCollection<Book> tempLibrary = new();
             var books = await db.LoadData<Book, dynamic>("spMyLibrary", new
             {
                 UserId = userId
             });
-            return books;
+            foreach(var book in books)
+            {
+                tempLibrary.Add(book);
+            }
+            return tempLibrary;
         }
     }
 }

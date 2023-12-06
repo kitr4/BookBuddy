@@ -51,6 +51,7 @@
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
             Command="{Binding ButtonLogInCommand}"
+            Click="NavigateToStartPage_Click"
             
             />
         <Button 

@@ -25,12 +25,17 @@ namespace BookBuddy.Views
         public CreateUserPage()
         {
             InitializeComponent();
+            DataContext = MainViewModel.mvm;
         }
 
         private void ReturnToLoginPage_Click(object sender, RoutedEventArgs e)
         {
             // Assuming the parent window has a NavigateToLoginPage method
             ((MainWindow)Window.GetWindow(this)).GoBack();
+        }
+        private void NavigateToStartPage_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(this)).NavigateToStartPage();
         }
     }
 }

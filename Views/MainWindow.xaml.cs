@@ -25,14 +25,8 @@ namespace BookBuddy.Views
             InitializeComponent();
             DataContext = MainViewModel.mvm;
             NavigateToLoginPage();
-            MainFrame.Navigate(new LoginPage());
             //NavigateToCreateUserPage();
         }
-
-        // Navigation before login.
-
-        
-       
 
         public void NavigateToStartPage()
         {
