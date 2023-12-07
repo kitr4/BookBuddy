@@ -35,11 +35,11 @@ namespace BookBuddy.ViewModels
         [ObservableProperty]
         private string? _password;
         [ObservableProperty]
-        private string? _searchText = "....";
+        private string? _searchText = "Search for booktitle, name of author....";
 
         // Represents a given list at a given time, blank to start with
         [ObservableProperty]
-        IEnumerable<Book> _bookList = new ObservableCollection<Book>();
+        private ObservableCollection<Book> _bookList = new ObservableCollection<Book>();
 
         
         // METHODS
@@ -58,9 +58,9 @@ namespace BookBuddy.ViewModels
             CurrentUser.Library = await DS.RetrieveLibrary(CurrentUser.UserId); 
         }
         // TO-DO: NEXT THING TO DO AFTER PC RESET AND BREAK (07/12)
-        public async Task SearchBooksAndInstantiate()
+        public async Task SearchBookAndInstantiate()
         {
-            await DS.SearchBook(SearchText)
+            BookList = await DS.SearchBook(SearchText);
         }
 
         #region Commands
@@ -73,7 +73,7 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task ButtonSearchBook()
         {
-            
+            await SearchBookAndInstantiate();
         }
 
         [RelayCommand]
@@ -98,13 +98,6 @@ namespace BookBuddy.ViewModels
            
             // await DS.CreateUser(CurrentUser);
         }
-        [RelayCommand]
-        public async Task ButtonSearchBook()
-        {
-            BookList = await DS.SearchBook(CurrentBook);
-        }
-        
-        
 
         #endregion;
     }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookBuddy.Views" xmlns:viewmodels="clr-namespace:BookBuddy.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="Booky" Height="600" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="Booky" Height="700" Width="800">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
         <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />

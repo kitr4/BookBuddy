@@ -56,7 +56,7 @@
         <Image HorizontalAlignment="Left" Height="92" Margin="709,10,0,0" VerticalAlignment="Top" Width="110" Source="/Views/hiBooky.jpg"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="10,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"/>
         <Label Content="{Binding CurrentUser.Username}" HorizontalAlignment="Left" Margin="22,137,0,0" VerticalAlignment="Top" Height="33" Width="88"/>
-        <ListBox HorizontalAlignment="Left" Height="468" Margin="560,132,0,0" VerticalAlignment="Top" Width="240" ItemsSource="{Binding CurrentUser.Library}" DisplayMemberPath="Title"/>
+        <ListBox   HorizontalAlignment="Left" Height="468" Margin="539,120,0,0" VerticalAlignment="Top" Width="240" ItemsSource="{Binding CurrentUser.Library}" DisplayMemberPath="Title" Background="#FF1F7EBD" Foreground="#FF16E8C2"/>
         <Button Click="GoBack_Click"  Content="Back" HorizontalAlignment="Left" Height="32" Margin="9,564,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
@@ -73,6 +73,7 @@
                 VerticalAlignment="Top"
                 Height="30" 
                 Width="84"
+                Command="{Binding ButtonSearchBookCommand}"
                 />
         <TextBox x:Name="searchTextBox" HorizontalAlignment="Left" 
                  Height="22" 
@@ -86,7 +87,7 @@
                 </h:EventTrigger>
             </h:Interaction.Triggers>
         </TextBox>
-        <Label Content="My Library" HorizontalAlignment="Left" FontSize="20" FontFamily="Century Gothic" Margin="555,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="114">
+        <Label Content="My Library" HorizontalAlignment="Left" FontSize="20" FontFamily="Century Gothic" Margin="537,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="114">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -96,6 +97,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ListBox d:ItemsSource="{Binding bookList}" DisplayMemberPath="Title" Margin="90,247,300,201"/>
+        <ListBox ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="123,247,267,201"/>
     </Grid>
 </Page>
