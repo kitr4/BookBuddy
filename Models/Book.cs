@@ -15,6 +15,7 @@ namespace BookBuddy.Models
         private string? _description;
         private int? _year;
         private string? _language;
+        private int? _rating;
 
      
         // Properties
@@ -24,6 +25,7 @@ namespace BookBuddy.Models
         public int? BookId { get => _bookId; set => _bookId = value; }
         public int? Year { get => _year; set => _year = value; }
         public string? Language { get => _language; set => _language = value; }
+        public int? Rating { get => _bookId; set => _bookId = value; }
 
 
         // private Author author;
@@ -33,7 +35,7 @@ namespace BookBuddy.Models
         {
 
         }
-        public Book(int bookId, string genre, string title, string description, int year, string language)
+        public Book(int bookId, string genre, string title, string description, int year, string language, int rating)
         {
             _bookId = bookId;
             _genre = genre;
@@ -41,6 +43,8 @@ namespace BookBuddy.Models
             _description = description;
             _year = year;
             _language = language;
+            _rating = rating;
+            
         }
     }
 }

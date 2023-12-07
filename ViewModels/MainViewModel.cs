@@ -17,6 +17,7 @@ namespace BookBuddy.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        #region Properties and backing fields
         public DataService DS = new DataService();
         // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
         public static MainViewModel mvm { get; } = new MainViewModel();
@@ -28,7 +29,7 @@ namespace BookBuddy.ViewModels
         private User? _currentUser = new();
         // Selected book on a given list
         [ObservableProperty]
-        private Book? _currentBook;
+        private Book? _currentBook = new();
         // properties used only on Log-in frame
         [ObservableProperty]
         private string? _username;
@@ -36,12 +37,14 @@ namespace BookBuddy.ViewModels
         private string? _password;
         [ObservableProperty]
         private string? _searchText = "Search for booktitle, name of author....";
+        
 
         // Represents a given list at a given time, blank to start with
         [ObservableProperty]
         private ObservableCollection<Book> _bookList = new ObservableCollection<Book>();
+        #endregion
 
-        
+        #region Methods
         // METHODS
         public async Task QueryValidation(string username, string password)
         {
@@ -62,7 +65,29 @@ namespace BookBuddy.ViewModels
         {
             BookList = await DS.SearchBook(SearchText);
         }
+        public async Task AddToLibrary()
+        {
+            if(CurrentBook != null && !CurrentUser.Library.Contains(CurrentBook))
+            {
+                CurrentUser.Library.Add(CurrentBook);
+                await DS.AddToLibrary(CurrentBook, CurrentUser);
+            }
+        }
+        public async Task RemoveFromLibrary()
+        {
+            // I dont think we need some conditionals for this operation. We find it under MyLibraryPage
+            //, and all books shown on this page is guaranteed to be in both the database under users_books
+            // and in Library collection on CurrentUser... but maybe there is a loophole somewhere.
+            await DS.RemoveFromLibrary(CurrentBook, CurrentUser);
+        }
+        public async Task RateBook()
+        {
+            await DS.RateBook(CurrentBook, CurrentUser);
+        }
+        #endregion
 
+        // Vi kunne jo overveje om vi bare skal skrive metoderne i kommandoerne... frem for at kalde metoderne i kommandoerne. 
+       
         #region Commands
         [RelayCommand]
         public async Task ButtonLogIn()
@@ -71,9 +96,24 @@ namespace BookBuddy.ViewModels
             await InstantiateLibrary();
         }
         [RelayCommand]
+        public async Task ButtonRateBook()
+        {
+            RateBook();
+        }
+        [RelayCommand]
         public async Task ButtonSearchBook()
         {
             await SearchBookAndInstantiate();
+        }
+        [RelayCommand]
+        public async Task ButtonAddToLibrary()
+        {
+            await AddToLibrary();
+        }
+        [RelayCommand]
+        public async Task ButtonRemoveFromLibrary()
+        {
+            await RemoveFromLibrary();
         }
 
         [RelayCommand]

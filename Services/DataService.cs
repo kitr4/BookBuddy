@@ -23,6 +23,33 @@ namespace BookBuddy.Services
 
         }
 
+        public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
+        {
+            await db.SaveData("spAddToLibrary", new
+            {
+                UserId = CurrentUser.UserId,
+                BookId = CurrentBook.BookId
+            });
+        }
+
+        public async Task RemoveFromLibrary(Book CurrentBook, User CurrentUser)
+        {
+            await db.SaveData("spRemoveFromLibrary", new
+            {
+                UserId = CurrentUser.UserId,
+                BookId = CurrentBook.BookId
+            });
+        }
+        public async Task RateBook(Book CurrentBook, User CurrentUser)
+        {
+            await db.SaveData("spRateBook", new
+            {
+                BookId = CurrentBook.BookId,
+                UserId = CurrentUser.UserId,
+                Rating = CurrentBook.Rating
+            });
+        }
+
 
         public async Task<int> VerifyCredentials(string username, string password)
         {

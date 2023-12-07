@@ -26,5 +26,9 @@ namespace BookBuddy.Views
             InitializeComponent();
             DataContext = MainViewModel.mvm;
         }
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(this)).GoBack();
+        }
     }
 }
