@@ -11,5 +11,7 @@
         <Frame x:Name="CreateUserPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="LoginPage" NavigationUIVisibility="Hidden" />
         <Frame x:Name="StartPage" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="MyLibraryPage" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="SearchBookPage" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -41,6 +41,7 @@ namespace BookBuddy.Models
             Username = userName;
             Email = eMail;
             Birthdate = birthdate;
+
         }
     }
 }

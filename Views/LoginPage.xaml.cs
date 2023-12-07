@@ -44,5 +44,6 @@ namespace BookBuddy.Views
             // Assuming the parent window has a CreateUserPage method
             ((MainWindow)Window.GetWindow(this)).NavigateToCreateUserPage();
         }
+      
     }
 }

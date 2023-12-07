@@ -17,25 +17,16 @@ using BookBuddy.ViewModels;
 namespace BookBuddy.Views
 {
     /// <summary>
-    /// Interaction logic for StartPage.xaml
+    /// Interaction logic for MyLibraryPage.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class MyLibraryPage : Page
     {
-        public StartPage()
+        public MyLibraryPage()
         {
             InitializeComponent();
             DataContext = MainViewModel.mvm;
         }
-        private void NavigateToSearchBookPage_Click(object sender, RoutedEventArgs e)
-        {
-            // Assuming the parent window has a NavigateToStartPage method
-            ((MainWindow)Window.GetWindow(this)).NavigateToSearchBookPage();
-        }
-        private void NavigateToMyLibraryPage_Click(object sender, RoutedEventArgs e)
-        {
-            // Assuming the parent window has a NavigateToStartPage method
-            ((MainWindow)Window.GetWindow(this)).NavigateToMyLibraryPage();
-        }
+
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Window.GetWindow(this)).GoBack();

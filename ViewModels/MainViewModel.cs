@@ -18,27 +18,24 @@ namespace BookBuddy.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         public DataService DS = new DataService();
-
         // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
         public static MainViewModel mvm { get; } = new MainViewModel();
-
         // This user is blank aside from when being filled out on CreateUserPage. Upon creation it will again be blank, so that the properties wont be set if another user is created in the same instance of the program.
         [ObservableProperty]
         private UserCreate? _createdUser = new();
-
         // Validated user will be set to CurrentUser on login.
         [ObservableProperty]
         private User? _currentUser = new();
-
         // Selected book on a given list
         [ObservableProperty]
         private Book? _currentBook;
-
         // properties used only on Log-in frame
         [ObservableProperty]
         private string? _username;
         [ObservableProperty]
         private string? _password;
+        [ObservableProperty]
+        private string? _searchText = "....";
 
         // Represents a given list at a given time, blank to start with
         [ObservableProperty]
@@ -60,15 +57,30 @@ namespace BookBuddy.ViewModels
         {
             CurrentUser.Library = await DS.RetrieveLibrary(CurrentUser.UserId); 
         }
+        // TO-DO: NEXT THING TO DO AFTER PC RESET AND BREAK (07/12)
+        public async Task SearchBooksAndInstantiate()
+        {
+            await DS.SearchBook(SearchText)
+        }
 
         #region Commands
         [RelayCommand]
         public async Task ButtonLogIn()
         {
             await QueryValidation(Username, Password);
+            await InstantiateLibrary();
+        }
+        [RelayCommand]
+        public async Task ButtonSearchBook()
+        {
             
         }
 
+        [RelayCommand]
+        public void ClearSearchText()
+        {
+            SearchText = string.Empty;
+        }
         [RelayCommand]
         public async Task ButtonCreateUser()
         {

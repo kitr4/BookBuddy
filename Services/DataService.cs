@@ -108,5 +108,18 @@ namespace BookBuddy.Services
             }
             return tempLibrary;
         }
+        public async Task<ObservableCollection<Book>> SearchBook(string searchtext)
+        {
+            ObservableCollection<Book> tempLibrary = new();
+            var books = await db.LoadData<Book, dynamic>("spSearchBook", new
+            {
+                searchString = searchtext
+            });
+            foreach (var book in books)
+            {
+                tempLibrary.Add(book);
+            }
+            return tempLibrary;
+        }
     }
 }

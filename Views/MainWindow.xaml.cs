@@ -28,6 +28,15 @@ namespace BookBuddy.Views
             //NavigateToCreateUserPage();
         }
 
+        public void NavigateToMyLibraryPage()
+        {
+            MainFrame.Navigate(new MyLibraryPage());
+        }
+        public void NavigateToSearchBookPage()
+        {
+            MainFrame.Navigate(new SearchBookPage());
+        }
+
         public void NavigateToStartPage()
         {
             MainFrame.Navigate(new StartPage());
