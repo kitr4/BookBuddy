@@ -27,7 +27,7 @@
 
 
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
-        <Button Content="Search user" Click="NavigateToSearchBookPage_Click" HorizontalAlignment="Left" Margin="0,91,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
+        <Button Content="Search book" Click="NavigateToSearchBookPage_Click" HorizontalAlignment="Left" Margin="0,91,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="My Library" Click="NavigateToMyLibraryPage_Click" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="Edit profile" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="{Binding CurrentUser.Username}" HorizontalAlignment="Left" Margin="0,169,0,0" VerticalAlignment="Top" Height="19" Width="83"/>
@@ -37,7 +37,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="34,305,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,326,0,0" TextWrapping="Wrap" Text="UserId" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,347,0,0" TextWrapping="Wrap" Text="Birthdate" VerticalAlignment="Top"/>
-        <Button Content="Log out" Click="GoBack_Click" HorizontalAlignment="Left" Margin="5,549,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
+        <Button Content="Log out" Command="{Binding ButtonLogOutCommand}" Click="NavigateToLoginPage_Click" HorizontalAlignment="Left" Margin="5,549,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
 
     </Grid>
 </Page>

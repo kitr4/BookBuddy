@@ -99,9 +99,11 @@
         </Label>
         <ListBox SelectedItem="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="123,247,267,201"/>
         <Button Command="{Binding ButtonRateBookCommand}" Content="Rate book" HorizontalAlignment="Left" Margin="539,534,0,0" VerticalAlignment="Top" Height="33" Width="65"/>
-        <Slider x:Name="RatingSlider" Value="{Binding CurrentBook.Rating}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
+        <Slider x:Name="RatingSlider" Value="{Binding CurrentBook.Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
         <Label Content="{Binding CurrentBook.Rating}" HorizontalAlignment="Left" Margin="630,567,0,0" VerticalAlignment="Top" Height="33" Width="25"/>
         <Label Content="Stars" HorizontalAlignment="Left" Margin="642,567,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="22,193,0,0" TextWrapping="Wrap" Text="{Binding CurrentBook.Title}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Results" FontFamily="Century Gothic" FontSize="20" HorizontalAlignment="Left" Margin="119,217,0,0" VerticalAlignment="Top" Width="79"/>
+        <Button Content="Add to library" HorizontalAlignment="Left" Margin="123,404,0,0" VerticalAlignment="Top" Height="30" Width="105"/>
+        <Button Content="Remove from library" HorizontalAlignment="Left" Margin="412,491,0,0" VerticalAlignment="Top" Height="38" Width="122" Click="Button_Click"/>
     </Grid>
 </Page>

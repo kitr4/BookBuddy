@@ -80,6 +80,32 @@ namespace BookBuddy.ViewModels
             // and in Library collection on CurrentUser... but maybe there is a loophole somewhere.
             await DS.RemoveFromLibrary(CurrentBook, CurrentUser);
         }
+
+        // This method goes into UserViewModel class instead when this has been created.
+        public void NullifyCurrentUser()
+        {
+            CurrentUser.Username = "";
+            CurrentUser.Library = null;
+            CurrentUser.Email = "";
+            CurrentUser.Birthdate = DateTime.Now;
+            CurrentUser.UserId = 0;
+        }
+        // This method goes into CreateUserViewModel clas instead when this has been created.
+        public void NullifyCreatedUser()
+        {
+            if(CreatedUser != null)
+            {
+                CreatedUser.Username = "";
+                CreatedUser.Email = "";
+                CreatedUser.Password1 = "";
+                CreatedUser.Password2 = "";
+            }
+        }
+        public void LogOut()
+        {
+            NullifyCreatedUser();
+            NullifyCurrentUser();
+        }
         public async Task RateBook()
         {
             await DS.RateBook(CurrentBook, CurrentUser);
@@ -94,11 +120,18 @@ namespace BookBuddy.ViewModels
         {
             await QueryValidation(Username, Password);
             await InstantiateLibrary();
+            Username = "";
+            Password = "";
+        }
+        [RelayCommand]
+        public void ButtonLogOut()
+        {
+            LogOut();
         }
         [RelayCommand]
         public async Task ButtonRateBook()
         {
-            RateBook();
+            await RateBook();
         }
         [RelayCommand]
         public async Task ButtonSearchBook()
@@ -124,21 +157,20 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task ButtonCreateUser()
         {
-            if(CreatedUser.isIdenticalPassword(CreatedUser))
+            if (CreatedUser.isIdenticalPassword(CreatedUser))
             {
-                if(CreatedUser.isFilledOut())
-                {
-                    CurrentUser.Username = CreatedUser.Username;
-                    CurrentUser.Email = CreatedUser.Email;
-                    CurrentUser.Birthdate = CreatedUser.Birthdate;
-                   await DS.CreateUser(CreatedUser, CreatedUser.Password1);
-                }
+                if (CreatedUser.isFilledOut())
+
+                    await DS.CreateUser(CreatedUser, CreatedUser.Password1);
+                NullifyCreatedUser();
             }
+        }
+    }
+ }
            //TO-DO: Show error message for given slots not filled out or password length not being over 7.
            
-            // await DS.CreateUser(CurrentUser);
-        }
+         
+     
 
         #endregion;
-    }
-}
+ 
