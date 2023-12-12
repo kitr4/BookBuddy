@@ -10,7 +10,6 @@ namespace BookBuddy.Models
     public class UserCreate
     {
         // Private backingfields
-        private int _userId;
         private string _userName;
         private string _email;
         private DateTime _birthdate;
@@ -18,8 +17,6 @@ namespace BookBuddy.Models
         // The password property is ONLY used for the instance of CREATING a user on CreateUserPage. When user has been created, the password field will be nullified, so the program does not contain password anywhere, aside from the moment it creates a user.
         private string? _password1;
         private string? _password2;
-
-
 
         // Properties
         public string? Username { get => _userName; set => _userName = value; }

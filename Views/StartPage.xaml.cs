@@ -36,9 +36,11 @@ namespace BookBuddy.Views
             // Assuming the parent window has a NavigateToStartPage method
             ((MainWindow)Window.GetWindow(this)).NavigateToMyLibraryPage();
         }
-        private void GoBack_Click(object sender, RoutedEventArgs e)
+        private void NavigateToLoginPage_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Window.GetWindow(this)).GoBack();
+            // Assuming the parent window has a NavigateToStartPage method
+            ((MainWindow)Window.GetWindow(this)).NavigateToLoginPage();
         }
+
     }
 }

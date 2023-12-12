@@ -40,7 +40,8 @@
     <Grid
         Background="#FFF19E"
         >
-        <Button 
+        <Button
+            Command="{Binding ButtonLogOutCommand}"
             Content="Back" 
             FontFamily="Cascadia Mono" 
             HorizontalAlignment="Left" 
@@ -51,7 +52,7 @@
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
             
-            Click="ReturnToLoginPage_Click"/>
+            Click="NavigateToLoginPage_Click"/>
         <Button 
             Command="{Binding ButtonCreateUserCommand}"
             Content="Create user" 
@@ -63,7 +64,7 @@
             Background="#FFFFEFEF"  
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
-            Click="NavigateToStartPage_Click"
+            Click="NavigateToLoginPage_Click"
             />
         <Label 
             Content="Username" 
@@ -161,7 +162,5 @@
             VerticalAlignment="Top" 
             Width="277" 
             Height="20"/>
-        <Button Click="ReturnToLoginPage_Click" Content="Button" HorizontalAlignment="Left" Margin="669,251,0,0" VerticalAlignment="Top"/>
-
     </Grid>
 </Page>
