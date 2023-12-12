@@ -99,7 +99,7 @@
         </Label>
         <ListBox SelectedItem="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="123,247,267,201"/>
         <Button Command="{Binding ButtonRateBookCommand}" Content="Rate book" HorizontalAlignment="Left" Margin="539,534,0,0" VerticalAlignment="Top" Height="33" Width="65"/>
-        <Slider x:Name="RatingSlider" Value="{Binding CurrentBook.Rating}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
+        <Slider x:Name="RatingSlider" Value="{Binding CurrentBook.Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
         <Label Content="{Binding CurrentBook.Rating}" HorizontalAlignment="Left" Margin="630,567,0,0" VerticalAlignment="Top" Height="33" Width="25"/>
         <Label Content="Stars" HorizontalAlignment="Left" Margin="642,567,0,0" VerticalAlignment="Top"/>
         <Label Content="Results" FontFamily="Century Gothic" FontSize="20" HorizontalAlignment="Left" Margin="119,217,0,0" VerticalAlignment="Top" Width="79"/>

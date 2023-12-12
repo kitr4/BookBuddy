@@ -31,5 +31,6 @@ namespace BookBuddy.Views
         {
             ((MainWindow)Window.GetWindow(this)).GoBack();
         }
+
     }
 }
