@@ -121,7 +121,7 @@ namespace BookBuddy.ViewModels
         {
             SearchText = string.Empty;
         }
-        [RelayCommand]
+        [RelayCommand]  
         public async Task ButtonCreateUser()
         {
             if(CreatedUser.isIdenticalPassword(CreatedUser))
