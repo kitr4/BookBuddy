@@ -20,7 +20,12 @@ namespace BookBuddy.ViewModels
         #region Properties and backing fields
         public DataService DS = new DataService();
         // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
-        public static MainViewModel mvm { get; } = new MainViewModel();
+        // public static MainViewModel mvm { get; } = new MainViewModel();
+
+        public MainViewModel (UserViewModel userViewModel)
+        {
+            CurrentUser = userViewModel;
+        }
         // This user is blank aside from when being filled out on CreateUserPage. Upon creation it will again be blank, so that the properties wont be set if another user is created in the same instance of the program.
         [ObservableProperty]
         private UserCreate? _createdUser = new();
@@ -34,10 +39,10 @@ namespace BookBuddy.ViewModels
 
         //@@@TO-DO: Move to a LogInViewModel ?
         // properties used only on Log-in frame
-        [ObservableProperty]
-        private string? _username;
-        [ObservableProperty]
-        private string? _password;
+        //[ObservableProperty]
+        //private string? _username;
+        //[ObservableProperty]
+        //private string? _password;
         //@@@TO-DO: Move to SearchpageViewModel ?
         [ObservableProperty]
         private string? _searchText = "Search for booktitle, name of author....";
@@ -50,19 +55,19 @@ namespace BookBuddy.ViewModels
 
         #region Methods
         // METHODS
-        public async Task QueryValidation(string username, string password)
-        {
-            await Task.Run(async () =>
-            {
-                CurrentUser = await DS.LogIn(username, password);
-            });
-        }
+        //public async Task QueryValidation(string username, string password)
+        //{
+        //    await Task.Run(async () =>
+        //    {
+        //        CurrentUser = await DS.LogIn(username, password);
+        //    });
+        //}
 
         // TO-DO:
-        public async Task InstantiateLibrary()
-        {
-            CurrentUser.Library = await DS.RetrieveLibrary(CurrentUser.UserId); 
-        }
+        //public async Task InstantiateLibrary()
+        //{
+        //   CurrentUser.Library = await DS.RetrieveLibrary(CurrentUser.UserId); 
+        //}
         // TO-DO: NEXT THING TO DO AFTER PC RESET AND BREAK (07/12)
         public async Task SearchBookAndInstantiate()
         {
@@ -91,7 +96,6 @@ namespace BookBuddy.ViewModels
             CurrentUser.Library = null;
             CurrentUser.Email = "";
             CurrentUser.Birthdate = DateTime.Now;
-            CurrentUser.UserId = 0;
         }
         // This method goes into CreateUserViewModel clas instead when this has been created.
         public void NullifyCreatedUser()
@@ -104,6 +108,7 @@ namespace BookBuddy.ViewModels
                 CreatedUser.Password2 = "";
             }
         }
+        // Let it stay in MainViewModel? 
         public void LogOut()
         {
             NullifyCreatedUser();

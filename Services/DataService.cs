@@ -1,4 +1,5 @@
 ﻿using BookBuddy.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -15,11 +16,36 @@ namespace BookBuddy.Services
         private static readonly string connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
         SqlConnection connection;
 
-        public async Task<User> LogIn(string username, string password)
+
+        public async Task<bool> IfUserExists(string username, string email)
+        {
+            return await Task.Run(() =>
+            {
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("spIfUserExists", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Username", username);
+                        command.Parameters.AddWithValue("@Password", email);
+
+                        // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                                return true;
+                            else
+                                return false;
+                        }
+                    }
+                }
+            });
+        }
+        public async Task<User> VerifyAndInstantiate(string username, string password)
         {
             int userId = await VerifyCredentials(username, password);
             return await InstantiateUser(userId);
-
         }
 
         public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
@@ -81,10 +107,9 @@ namespace BookBuddy.Services
             });
         }
 
-        public async Task<User> InstantiateUser(int userId)
+        public async Task<User?> InstantiateUser(int userId)
         {
-            User blankUser = new();
-
+            
             var userList = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
 
             if (userId != 0)
@@ -94,13 +119,13 @@ namespace BookBuddy.Services
             // we should then return an error message saying user was not found, and after having returned blankUser delete it again, so it does not take up memory.
             else
             {
-                return blankUser;
+                return null;
             }
         }
 
-        public async Task CreateUser(UserCreate createdUser, string password)
+        public async Task CreateUser(string username, string password, string email, DateTime birthdate)
         {
-            await db.SaveData("spCreateUser", new { createdUser.Username, Password = password, createdUser.Email, createdUser.Birthdate });
+            await db.SaveData("spCreateUser", new { Username = username, Password = password, Email = email, Birthdate = birthdate });
         }
 
         public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)

@@ -5,24 +5,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookBuddy.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookBuddy.ViewModels
 {
-    public class UserViewModel
+    public partial class UserViewModel : ObservableObject
     {
         // Backingfields
         private User _user;
         private string _username;
         private string _email;
         private DateTime _birthdate;
+        
         // Properties
         public string Username { get => _username; set => _username = value; }
         public string Email { get => _email; set => _email = value; }
+        public User User
+        {
+            get => _user;
+        }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
         // List of books
-        public ObservableCollection<BookViewModel> Books { get; } = new();
+        // [ObservableProperty]
+        private ObservableCollection<BookViewModel> _library = new ObservableCollection<BookViewModel>();
 
+        public ObservableCollection<BookViewModel> Library
+        {
+            get => _library;
+            set => _library = value;
+        }
         public UserViewModel(User user)
         {
             this._user = user;
@@ -34,7 +46,7 @@ namespace BookBuddy.ViewModels
             {
                 foreach(var book in _user.Library)
                 {
-                    Books.Add(new BookViewModel(book));
+                    Library.Add(new BookViewModel(book));
                 }
                
             }
