@@ -18,7 +18,6 @@ namespace BookBuddy.Services
         public async Task<User> LogIn(string username, string password)
         {
             int userId = await VerifyCredentials(username, password);
-
             return await InstantiateUser(userId);
 
         }

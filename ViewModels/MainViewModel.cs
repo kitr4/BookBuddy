@@ -24,17 +24,21 @@ namespace BookBuddy.ViewModels
         // This user is blank aside from when being filled out on CreateUserPage. Upon creation it will again be blank, so that the properties wont be set if another user is created in the same instance of the program.
         [ObservableProperty]
         private UserCreate? _createdUser = new();
-        // Validated user will be set to CurrentUser on login.
+
         [ObservableProperty]
-        private User? _currentUser = new();
+        public UserViewModel _currentUser;
+
         // Selected book on a given list
         [ObservableProperty]
         private Book? _currentBook = new();
+
+        //@@@TO-DO: Move to a LogInViewModel ?
         // properties used only on Log-in frame
         [ObservableProperty]
         private string? _username;
         [ObservableProperty]
         private string? _password;
+        //@@@TO-DO: Move to SearchpageViewModel ?
         [ObservableProperty]
         private string? _searchText = "Search for booktitle, name of author....";
         
@@ -51,7 +55,6 @@ namespace BookBuddy.ViewModels
             await Task.Run(async () =>
             {
                 CurrentUser = await DS.LogIn(username, password);
-                
             });
         }
 
@@ -168,9 +171,6 @@ namespace BookBuddy.ViewModels
     }
  }
            //TO-DO: Show error message for given slots not filled out or password length not being over 7.
-           
-         
-     
 
         #endregion;
  

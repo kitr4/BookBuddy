@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookBuddy.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookBuddy.ViewModels
 {
@@ -19,21 +20,25 @@ namespace BookBuddy.ViewModels
         public string Username { get => _username; set => _username = value; }
         public string Email { get => _email; set => _email = value; }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
-
         // List of books
-        public ObservableCollection<BookViewModel> books = new();
+        public ObservableCollection<BookViewModel> Books { get; } = new();
 
         public UserViewModel(User user)
         {
-            _user = user;
+            this._user = user;
             this.Username = _user.Username;
             this.Email = _user.Email;
             this.Birthdate = _user.Birthdate;
-            // TO-DO:
-            // this.books = _user.Library;
+            // Populates UserViewModel Library with the retrieved library on User.
+             if (_user.Library != null)
+            {
+                foreach(var book in _user.Library)
+                {
+                    Books.Add(new BookViewModel(book));
+                }
+               
+            }
         }
-
-    
 
     }
 }

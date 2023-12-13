@@ -25,14 +25,11 @@ namespace BookBuddy.Models
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
 
         public ObservableCollection<Book>? Library { get => _library; set => _library = value; }
-        
-
 
         public User()
         {
 
         }
-
         public User(int userId, string userName, string eMail, DateTime birthdate)
         {
             UserId = userId;
@@ -41,5 +38,6 @@ namespace BookBuddy.Models
             Birthdate = birthdate;
 
         }
+
     }
 }
