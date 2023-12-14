@@ -31,6 +31,7 @@ namespace BookBuddy.ViewModels
                 {
                     CurrentUser = new UserViewModel(RetrievedUser);
                     MainViewModel mvm = new MainViewModel(CurrentUser);
+                    
                     Username = "";
                     Password = "";
                 }

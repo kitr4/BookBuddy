@@ -19,19 +19,19 @@ namespace BookBuddy.ViewModels
     {
         #region Properties and backing fields
         public DataService DS = new DataService();
+        public MainViewModel mvm = new();
         // En måde at binde alle op på SAMME objekt, men jaer... ikke bedste praksis når man multithreader over samme objekt, åbenbart 
         // public static MainViewModel mvm { get; } = new MainViewModel();
 
-        public MainViewModel (UserViewModel userViewModel)
+        public MainViewModel ()
         {
-            CurrentUser = userViewModel;
+           
         }
         // This user is blank aside from when being filled out on CreateUserPage. Upon creation it will again be blank, so that the properties wont be set if another user is created in the same instance of the program.
-        [ObservableProperty]
-        private UserCreate? _createdUser = new();
+        
 
         [ObservableProperty]
-        public UserViewModel _currentUser;
+        public UserViewModel? _currentUser;
 
         // Selected book on a given list
         [ObservableProperty]
@@ -97,21 +97,10 @@ namespace BookBuddy.ViewModels
             CurrentUser.Email = "";
             CurrentUser.Birthdate = DateTime.Now;
         }
-        // This method goes into CreateUserViewModel clas instead when this has been created.
-        public void NullifyCreatedUser()
-        {
-            if(CreatedUser != null)
-            {
-                CreatedUser.Username = "";
-                CreatedUser.Email = "";
-                CreatedUser.Password1 = "";
-                CreatedUser.Password2 = "";
-            }
-        }
+
         // Let it stay in MainViewModel? 
         public void LogOut()
         {
-            NullifyCreatedUser();
             NullifyCurrentUser();
         }
         public async Task RateBook()

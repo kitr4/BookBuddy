@@ -22,8 +22,8 @@ namespace BookBuddy.Views
 
         public MainWindow()
         {
+           
             InitializeComponent();
-            DataContext = MainViewModel.mvm;
             NavigateToLoginPage();
             //NavigateToCreateUserPage();
         }
