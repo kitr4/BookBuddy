@@ -141,14 +141,12 @@ namespace BookBuddy.Services
             {
                 booklist.Add(book);
             }
-
             return booklist;
-
         }
 
-        public async Task<ObservableCollection<Book>> RetrieveLibrary(int userId)
+        public async Task<List<Book>> RetrieveLibrary(int userId)
         {
-            ObservableCollection<Book> tempLibrary = new();
+            List<Book> tempLibrary = new();
             var books = await db.LoadData<Book, dynamic>("spMyLibrary", new
             {
                 UserId = userId
@@ -159,9 +157,9 @@ namespace BookBuddy.Services
             }
             return tempLibrary;
         }
-        public async Task<ObservableCollection<Book>> SearchBook(string searchtext)
+        public async Task<List<Book>> SearchBook(string searchtext)
         {
-            ObservableCollection<Book> tempLibrary = new();
+            List<Book> tempLibrary = new();
             var books = await db.LoadData<Book, dynamic>("spSearchBook", new
             {
                 searchString = searchtext
@@ -172,5 +170,6 @@ namespace BookBuddy.Services
             }
             return tempLibrary;
         }
+
     }
 }

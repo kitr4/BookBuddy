@@ -14,6 +14,7 @@ namespace BookBuddy.ViewModels
 
     public partial class CreateUserViewModel : ObservableObject
     {
+        public DataService DS = new();
         [ObservableProperty]
         private string _username;
         [ObservableProperty]
@@ -39,7 +40,7 @@ namespace BookBuddy.ViewModels
 
         // TO-DO:
         // Take this property up on a general layer, as its redundant to create a new object for every View
-        public DataService DS = new();
+       
         //public CreateUserViewModel(DataService DS)
         //{
         //    this.DS = DS;

@@ -27,14 +27,9 @@ namespace BookBuddy.ViewModels
         }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
         // List of books
-        // [ObservableProperty]
+        [ObservableProperty]
         private ObservableCollection<BookViewModel> _library = new ObservableCollection<BookViewModel>();
 
-        public ObservableCollection<BookViewModel> Library
-        {
-            get => _library;
-            set => _library = value;
-        }
         public UserViewModel(User user)
         {
             this._user = user;
@@ -42,15 +37,8 @@ namespace BookBuddy.ViewModels
             this.Email = _user.Email;
             this.Birthdate = _user.Birthdate;
             // Populates UserViewModel Library with the retrieved library on User.
-             if (_user.Library != null)
-            {
-                foreach(var book in _user.Library)
-                {
-                    Library.Add(new BookViewModel(book));
-                }
-               
-            }
         }
-
     }
+
 }
+

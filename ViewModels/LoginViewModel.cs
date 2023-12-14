@@ -12,15 +12,13 @@ namespace BookBuddy.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
+        // Denne kunne evt også gøres til static, og så ville vi bruge den samme reference til at udøve servicerne.
         public DataService DS { get; set; }
-        [ObservableProperty]
-        private string? _username;
-        [ObservableProperty]
-        private string? _password;
-        [ObservableProperty]
-        public UserViewModel _currentUser;
 
-
+        [ObservableProperty]
+        private string? _enteredUsername;
+        [ObservableProperty]
+        private string? _enteredPassword;
 
         public async Task LogIn(string username, string password)
         {
@@ -29,11 +27,9 @@ namespace BookBuddy.ViewModels
                 User RetrievedUser = await DS.VerifyAndInstantiate(username, password);
                 if (RetrievedUser != null)
                 {
-                    CurrentUser = new UserViewModel(RetrievedUser);
-                    MainViewModel mvm = new MainViewModel(CurrentUser);
-                    
-                    Username = "";
-                    Password = "";
+                    MainViewModel.mvm.CurrentUser = new(RetrievedUser);
+                    EnteredUsername = "";
+                    EnteredPassword = "";
                 }
             });
         }
@@ -47,9 +43,8 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task ButtonLogIn()
         {
-            await LogIn(Username, Password);
-            // await InstantiateLibrary();
-           
+            await LogIn(EnteredUsername, EnteredPassword);
+            // await InstantiateLibrary(); 
         }
 
     }

@@ -25,6 +25,7 @@ namespace BookBuddy.Views
            
             InitializeComponent();
             NavigateToLoginPage();
+
             //NavigateToCreateUserPage();
         }
 

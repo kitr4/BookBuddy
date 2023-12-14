@@ -72,7 +72,7 @@
                 VerticalAlignment="Top"
                 Height="30" 
                 Width="84"
-                Command="{Binding ButtonSearchBookCommand}"
+                Command="{Binding SearchBookCommand}"
                 />
         <TextBox x:Name="searchTextBox" HorizontalAlignment="Left" 
                  Height="22" 
@@ -86,8 +86,8 @@
                 </h:EventTrigger>
             </h:Interaction.Triggers>
         </TextBox>
-        <ListBox SelectedItem="{Binding CurrentBook, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="190,243,200,194"/>
-        <Button Content="Add to My Library" HorizontalAlignment="Center" Margin="0,452,0,0" VerticalAlignment="Top" Height="55" Width="212" Background="#FFD0C3DF" Command="{Binding ButtonAddToLibraryCommand}"/>
-        <TextBox Text="{Binding CurrentBook.Title}" HorizontalAlignment="Left" Margin="54,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ListBox SelectedItem="{Binding mvm.SelectedBook, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="190,243,200,194"/>
+        <Button Content="Add to My Library" HorizontalAlignment="Left" Margin="289,572,0,0" VerticalAlignment="Top" Height="55" Width="212" Background="#FFD0C3DF" Command="{Binding AddToLibraryCommand}"/>
+        <TextBox Text="{Binding mvm.SelectedBook.Title}" HorizontalAlignment="Left" Margin="54,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

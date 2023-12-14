@@ -24,6 +24,7 @@ namespace BookBuddy.ViewModels
         public int? Year { get => _year; set => _year = value; }
         public string? Language { get => _language; set => _language = value; }
         public int? Rating { get => _rating; set => _rating = value; }
+        public Book Book { get => _book; }
 
         public BookViewModel(Book book)
         {
