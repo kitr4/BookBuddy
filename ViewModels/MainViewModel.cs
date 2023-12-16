@@ -18,24 +18,16 @@ namespace BookBuddy.ViewModels
     public partial class MainViewModel : ObservableObject
     {
 
-        public static MainViewModel mvm { get; } = new MainViewModel();
+        private readonly UserViewModel _userViewModel;
+        private readonly BookViewModel _bookViewModel;
+        private readonly LoginViewModel lvm;
         
         public MainViewModel ()
         {
-           
+           DataService DS = new DataService();
+           lvm = new(DS);
         }
-        #region Properties and backing fields
-        [ObservableProperty]
-        public UserViewModel? _currentUser;
 
-        // Selected book on a given list
-        [ObservableProperty]
-        private BookViewModel? _selectedBook;
-
-        // Represents a given list at a given time, blank to start with
-        [ObservableProperty]
-        private ObservableCollection<Book> _bookList = new ObservableCollection<Book>();
-        #endregion
 
     }
  }

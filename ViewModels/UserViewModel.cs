@@ -17,13 +17,14 @@ namespace BookBuddy.ViewModels
         private string _username;
         private string _email;
         private DateTime _birthdate;
-        
         // Properties
         public string Username { get => _username; set => _username = value; }
         public string Email { get => _email; set => _email = value; }
+
         public User User
         {
             get => _user;
+            set => _user = value;
         }
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
         // List of books
