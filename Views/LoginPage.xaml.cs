@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookBuddy.ViewModels;
+using BookBuddy.Services;
 
 namespace BookBuddy.Views
 {
@@ -26,16 +27,9 @@ namespace BookBuddy.Views
         public LoginPage()
         {
             InitializeComponent();
-            //DataContext = MainViewModel.mvm;
             DataContext = lvm;
         }
 
-        public void NavigateToStartPage()
-        {
-            // StartPage.Navigate(new LoginPage());
-        }
-        /* Hele denne metode skal laves om til en login metode, som navigere til startpage, 
-           selve knappen skal ikke navigere til start page. */
         private void NavigateToStartPage_Click(object sender, RoutedEventArgs e)
         {
             // Assuming the parent window has a NavigateToStartPage method

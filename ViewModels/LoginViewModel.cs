@@ -12,23 +12,26 @@ namespace BookBuddy.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
-        private readonly DataService DS;
+        private readonly DataService _dataService;
 
-        public LoginViewModel(DataService dataService)
+        public LoginViewModel()
         {
-            DS = dataService;
+            _dataService = DataService.stDS;
         }
+        public DataService DataService { get { return _dataService; } }
 
         [ObservableProperty]
         private string? _enteredUsername;
         [ObservableProperty]
         private string? _enteredPassword;
 
+       
+
         public async Task LogIn(string username, string password)
         {
             await Task.Run(async () =>
             {
-                User RetrievedUser = await DS.VerifyAndInstantiate(username, password);
+                User RetrievedUser = await DataService.VerifyAndInstantiate(username, password);
                 if (RetrievedUser != null)
                 {
                     MainViewModel.mvm.CurrentUser = new(RetrievedUser);
@@ -44,6 +47,7 @@ namespace BookBuddy.ViewModels
             await LogIn(EnteredUsername, EnteredPassword);
             // await InstantiateLibrary(); 
         }
+
 
     }
 }

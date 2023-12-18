@@ -17,20 +17,19 @@ namespace BookBuddy.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        public static MainViewModel mvm { get; } = new MainViewModel();
 
-        private readonly UserViewModel _userViewModel;
-        private readonly BookViewModel _bookViewModel;
-        private readonly LoginViewModel lvm;
-        
-        public MainViewModel ()
-        {
-           DataService DS = new DataService();
-           lvm = new(DS);
+        private UserViewModel _currentUser;
+
+        public UserViewModel CurrentUser 
+        { 
+            get { return _currentUser; } 
+            set { _currentUser = value; } 
         }
-
-
     }
- }
+
+}
+ 
 
 
  

@@ -25,7 +25,7 @@ namespace BookBuddy.Views
         public StartPage()
         {
             InitializeComponent();
-            DataContext = MainViewModel.mvm;
+            DataContext = startVM;
         }
         private void NavigateToSearchBookPage_Click(object sender, RoutedEventArgs e)
         {

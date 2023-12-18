@@ -10,38 +10,57 @@ using System.Threading.Tasks;
 namespace BookBuddy.Services
 {
     public class DataService
-
     {
-        readonly DBAccess db = new();
-        private static readonly string connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
-        SqlConnection connection;
+        private static readonly DataService _stDS = new DataService();
+        private readonly IDBAccess _db;
+
+        // this string is already on our _db object private static readonly string connectionString = "Server=10.56.8.36;Database=_db_F23_32;User Id=_db_F23_USER_32;Password=OPEN_db_32;";
+        private DataService()
+        {
+            IDBAccess dbAccess = new DBAccess();
+            _db = dbAccess;
+        }
+        public IDBAccess DB { get { return _db; } }
+
+        public static DataService stDS => _stDS;
+        
+        // Thomas foretrækker at vi gør det på den manuelle måde, som her
+        //public async Task<bool> IfUserExists(string username, string email)
+        //{
+        //    return await Task.Run(() =>
+        //    {
+        //        using (connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
+        //            using (SqlCommand command = new SqlCommand("spIfUserExists", connection))
+        //            {
+        //                command.CommandType = CommandType.StoredProcedure;
+        //                command.Parameters.AddWithValue("@Username", username);
+        //                command.Parameters.AddWithValue("@Password", email);
+
+        //                // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    if (reader.HasRows)
+        //                        return true;
+        //                    else
+        //                        return false;
+        //                }
+        //            }
+        //        }
+        //    });
+        //}
 
 
         public async Task<bool> IfUserExists(string username, string email)
         {
-            return await Task.Run(() =>
-            {
-                using (connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("spIfUserExists", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@Username", username);
-                        command.Parameters.AddWithValue("@Password", email);
+            var parameters = new { Username = username, Password = email };
 
-                        // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                                return true;
-                            else
-                                return false;
-                        }
-                    }
-                }
-            });
+            var result = await DB.LoadData<User, dynamic>("spIfUserExists", parameters);
+            return result.Any(); // Check if there's any result, implying the user exists
         }
+
+
         public async Task<User> VerifyAndInstantiate(string username, string password)
         {
             int userId = await VerifyCredentials(username, password);
@@ -50,7 +69,7 @@ namespace BookBuddy.Services
 
         public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
         {
-            await db.SaveData("spAddToLibrary", new
+            await _db.SaveData("spAddToLibrary", new
             {
                 UserId = CurrentUser.UserId,
                 BookId = CurrentBook.BookId
@@ -59,7 +78,7 @@ namespace BookBuddy.Services
 
         public async Task RemoveFromLibrary(Book CurrentBook, User CurrentUser)
         {
-            await db.SaveData("spRemoveFromLibrary", new
+            await DB.SaveData("spRemoveFromLibrary", new
             {
                 UserId = CurrentUser.UserId,
                 BookId = CurrentBook.BookId
@@ -67,7 +86,7 @@ namespace BookBuddy.Services
         }
         public async Task RateBook(Book CurrentBook, User CurrentUser)
         {
-            await db.SaveData("spRateBook", new
+            await DB.SaveData("spRateBook", new
             {
                 BookId = CurrentBook.BookId,
                 UserId = CurrentUser.UserId,
@@ -75,42 +94,50 @@ namespace BookBuddy.Services
             });
         }
 
+        //public async Task<int> VerifyCredentials(string username, string password)
+        //{
+        //    return await Task.Run(() =>
+        //    {
+        //        int userId = 0;
+        //        using (connection = new SqlConnection(connectionString))
+        //        {
+        //            connection.Open();
+        //            using (SqlCommand command = new SqlCommand("spVerifyCredentials", connection))
+        //            {
+        //                command.CommandType = CommandType.StoredProcedure;
+        //                command.Parameters.AddWithValue("@Username", username);
+        //                command.Parameters.AddWithValue("@Password", password);
 
+        //                // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    if (reader.HasRows)
+        //                    {
+        //                        while (reader.Read())
+        //                        {
+        //                            userId = reader.GetInt32(reader.GetOrdinal("UserId"));
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        return userId;
+        //    });
+        //}
         public async Task<int> VerifyCredentials(string username, string password)
         {
-            return await Task.Run(() =>
-            {
-                int userId = 0;
-                using (connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("spVerifyCredentials", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@Username", username);
-                        command.Parameters.AddWithValue("@Password", password);
+            var parameters = new { Username = username, Password = password };
 
-                        // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    userId = reader.GetInt32(reader.GetOrdinal("UserId"));
-                                }
-                            }
-                        }
-                    }
-                }
-                return userId;
-            });
+            var result = await _db.LoadData<int, dynamic>("spVerifyCredentials", parameters);
+            int userId = result.FirstOrDefault(); 
+
+            return userId;
         }
 
         public async Task<User?> InstantiateUser(int userId)
         {
             
-            var userList = await db.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
+            var userList = await DB.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
 
             if (userId != 0)
             {
@@ -125,13 +152,13 @@ namespace BookBuddy.Services
 
         public async Task CreateUser(string username, string password, string email, DateTime birthdate)
         {
-            await db.SaveData("spCreateUser", new { Username = username, Password = password, Email = email, Birthdate = birthdate });
+            await DB.SaveData("spCreateUser", new { Username = username, Password = password, Email = email, Birthdate = birthdate });
         }
 
         public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)
         {
             ObservableCollection<Book> booklist = new();
-            var books = await db.LoadData<Book, dynamic>("spSearchBook", new 
+            var books = await DB.LoadData<Book, dynamic>("spSearchBook", new 
             { Title = currentBook.Title, 
                 Description = currentBook.Description, 
                 Genre = currentBook.Genre, Year = 
@@ -147,7 +174,7 @@ namespace BookBuddy.Services
         public async Task<List<Book>> RetrieveLibrary(int userId)
         {
             List<Book> tempLibrary = new();
-            var books = await db.LoadData<Book, dynamic>("spMyLibrary", new
+            var books = await DB.LoadData<Book, dynamic>("spMyLibrary", new
             {
                 UserId = userId
             });
@@ -159,16 +186,16 @@ namespace BookBuddy.Services
         }
         public async Task<List<Book>> SearchBook(string searchtext)
         {
-            List<Book> tempLibrary = new();
-            var books = await db.LoadData<Book, dynamic>("spSearchBook", new
+            List<Book> bookResults = new();
+            var books = await DB.LoadData<Book, dynamic>("spSearchBook", new
             {
                 searchString = searchtext
             });
             foreach (var book in books)
             {
-                tempLibrary.Add(book);
+                bookResults.Add(book);
             }
-            return tempLibrary;
+            return bookResults;
         }
 
     }

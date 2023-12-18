@@ -22,13 +22,12 @@ namespace BookBuddy.Views
 
         public MainWindow()
         {
-           
             InitializeComponent();
             NavigateToLoginPage();
-
-            //NavigateToCreateUserPage();
         }
 
+        // If we have time, lets think about making a NavigationService instead of having it directly in the codebehind.
+        #region Navigation
         public void NavigateToMyLibraryPage()
         {
             MainFrame.Navigate(new MyLibraryPage());
@@ -48,6 +47,7 @@ namespace BookBuddy.Views
             MainFrame.Navigate(new CreateUserPage());
         }
 
+        // TO-DO: Fix
         public void NavigateToLoginPage() 
         {
             MainFrame.Navigate(new LoginPage());
@@ -59,9 +59,7 @@ namespace BookBuddy.Views
                 MainFrame.GoBack();
             }
         }
+        #endregion
 
-        
-
-        // Navigation after login.
     }
 }

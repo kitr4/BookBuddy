@@ -22,10 +22,13 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class CreateUserPage : Page
     {
+        private readonly CreateUserViewModel cvm;
+
         public CreateUserPage()
         {
             InitializeComponent();
-            DataContext = MainViewModel.mvm;
+            cvm = new();
+            DataContext = cvm;
         }
 
         private void NavigateToLoginPage_Click(object sender, RoutedEventArgs e)

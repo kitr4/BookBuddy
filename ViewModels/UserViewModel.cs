@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BookBuddy.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace BookBuddy.ViewModels
 {
@@ -26,6 +25,7 @@ namespace BookBuddy.ViewModels
             get => _user;
             set => _user = value;
         }
+
         public DateTime Birthdate { get => _birthdate; set => _birthdate = value; }
         // List of books
         [ObservableProperty]

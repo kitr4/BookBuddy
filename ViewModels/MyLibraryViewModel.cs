@@ -10,21 +10,27 @@ using BookBuddy.Models;
 
 namespace BookBuddy.ViewModels
 {
-    public partial class MyLibraryViewModel
+    public partial class MyLibraryViewModel : ObservableObject
     {
-        public DataService DS = new();
+        private readonly DataService _dataService;
+
+       
 
         public MyLibraryViewModel()
         {
-            
+            _dataService = DataService.stDS;
         }
+        public DataService DataService { get { return _dataService; } }
+
+        [ObservableProperty]
+        private BookViewModel _selectedBook;
 
         public async Task AddToLibrary()
         {
-            if (MainViewModel.mvm.SelectedBook != null && MainViewModel.mvm.CurrentUser != null && !MainViewModel.mvm.CurrentUser.Library.Contains(MainViewModel.mvm.SelectedBook))
+            if (SelectedBook != null && MainViewModel.mvm.CurrentUser != null && !MainViewModel.mvm.CurrentUser.Library.Contains(SelectedBook))
             {
-                MainViewModel.mvm.CurrentUser.Library.Add(MainViewModel.mvm.SelectedBook);
-                await DS.AddToLibrary(MainViewModel.mvm.SelectedBook.Book, MainViewModel.mvm.CurrentUser.User) ;
+                MainViewModel.mvm.CurrentUser.Library.Add(SelectedBook);
+                await DataService.AddToLibrary(SelectedBook.Book, MainViewModel.mvm.CurrentUser.User) ;
             }
         }
         public async Task RemoveFromLibrary()
@@ -32,12 +38,12 @@ namespace BookBuddy.ViewModels
             // I dont think we need some conditionals for this operation. We find it under MyLibraryPage
             //, and all books shown on this page is guaranteed to be in both the database under users_books
             // and in Library collection on CurrentUser... but maybe there is a loophole somewhere.
-            await DS.RemoveFromLibrary(MainViewModel.mvm.SelectedBook.Book, MainViewModel.mvm.CurrentUser.User);
+            await DataService.RemoveFromLibrary(SelectedBook.Book, MainViewModel.mvm.CurrentUser.User);
         }
 
         public async Task RateBook()
         {
-            await DS.RateBook(MainViewModel.mvm.SelectedBook.Book, MainViewModel.mvm.CurrentUser.User);
+            await DataService.RateBook(SelectedBook.Book, MainViewModel.mvm.CurrentUser.User);
         }
 
 

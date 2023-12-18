@@ -11,49 +11,50 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BookBuddy.ViewModels
 {
-
     public partial class CreateUserViewModel : ObservableObject
     {
-        public DataService DS = new();
+        private readonly DataService _dataService;
+
+        public CreateUserViewModel()
+        {
+            _dataService = DataService.stDS;
+        }
+
+        public DataService DataService { get { return _dataService; } }
+
         [ObservableProperty]
-        private string _username;
+        private string? _username;
         [ObservableProperty]
-        private string _password1;
+        private string? _password1;
+        [ObservableProperty] 
+        private string? _password2;
         [ObservableProperty]
-        private string _password2;
+        private string? _identicalPassword;
         [ObservableProperty]
-        private string _identicalPassword;
+        private string? _email;
         [ObservableProperty]
-        private string email;
+        private DateTime _birthdate = DateTime.Now;
+
+        
 
         private bool _isValidated = false;
-
         public bool isValidated
         {
             get => _isValidated;
             set => _isValidated = value;
         }
+
         // TO-DO:
         // Make selection of birthdate logic
-        [ObservableProperty]
-        private DateTime _birthdate = DateTime.Now;
-
-        // TO-DO:
-        // Take this property up on a general layer, as its redundant to create a new object for every View
-       
-        //public CreateUserViewModel(DataService DS)
-        //{
-        //    this.DS = DS;
-        //}
-
+     
         public void NullifyFields()
         {
             if (isValidated)
             {
                 Username = "";
-                Email = "";
                 Password1 = "";
                 Password2 = "";
+                Email = "";
                 IdenticalPassword = "";
             }
         }
@@ -64,7 +65,7 @@ namespace BookBuddy.ViewModels
 
             if (isValidated)
             {
-                await DS.CreateUser(Username, Email, IdenticalPassword, Birthdate);
+                await DataService.CreateUser(Username, Email, IdenticalPassword, Birthdate);
                 NullifyFields();
             }
         }
@@ -75,14 +76,17 @@ namespace BookBuddy.ViewModels
             {
                 // TO-DO: Error message, passwords not identical and break
             }
+          
                 // TO-DO: Error messages on Email and/or username not filled out
             // Logic to check if the values are in the Users table in the database.
-            bool isExisting = await DS.IfUserExists(username, email);
+            bool isExisting = await DataService.IfUserExists(username, email);
+
             if (isExisting)
             {
                 // TO-DO: error message, a user with that email or username was already found.
                 return false;
             }
+            IdenticalPassword = Password1;
             return true;
         }
 

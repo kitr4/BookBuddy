@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookBuddy.Models;
 using BookBuddy.Services;
 using CommunityToolkit.Mvvm.Input;
 
@@ -13,7 +12,12 @@ namespace BookBuddy.ViewModels
 {
     public partial class StartViewModel : ObservableObject
     {
-        public DataService DS = new();
+        private readonly DataService _dataService;
+
+        public StartViewModel()
+        {
+            _dataService = DataService.stDS;
+        }
 
         public void NullifyCurrentUser()
         {
@@ -39,7 +43,7 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task InstantiateLibrary()
         {
-            List<Book> retrievedList = await DS.RetrieveLibrary(MainViewModel.mvm.CurrentUser.User.UserId);
+            List<Book> retrievedList = await _dataService.RetrieveLibrary(MainViewModel.mvm.CurrentUser.User.UserId);
             ConvertBookToBVMAndPopulate(retrievedList);
         }
 
