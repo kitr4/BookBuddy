@@ -21,11 +21,12 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class StartPage : Page
     {
-        public StartViewModel startVM = new();
+        // public StartViewModel startVM = new();
         public StartPage()
         {
             InitializeComponent();
-            DataContext = startVM;
+            DataContext = StartViewModel.svm;
+            
         }
         private void NavigateToSearchBookPage_Click(object sender, RoutedEventArgs e)
         {

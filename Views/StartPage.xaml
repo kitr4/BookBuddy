@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookBuddy" xmlns:viewmodels="clr-namespace:BookBuddy.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="StartPage">
@@ -28,16 +27,17 @@
 
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
         <Button Content="Search book" Click="NavigateToSearchBookPage_Click" HorizontalAlignment="Left" Margin="0,91,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
-        <Button Content="My Library" Click="NavigateToMyLibraryPage_Click" Command="{Binding startVM.InstantiateLibraryCommand}" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
+        <Button Content="My Library" Click="NavigateToMyLibraryPage_Click" Command="{Binding InstantiateLibraryCommand}" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="Edit profile" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="{Binding mvm.CurrentUser.Username}" HorizontalAlignment="Left" Margin="0,169,0,0" VerticalAlignment="Top" Height="19" Width="83"/>
 
         <Image HorizontalAlignment="Left" Height="100" Margin="643,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"></Image>
-        <TextBlock HorizontalAlignment="Left" Margin="34,284,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Username}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="34,284,0,0" TextWrapping="Wrap" Text="{Binding mvm.CurrentUser.Username}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,305,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,326,0,0" TextWrapping="Wrap" Text="UserId" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,347,0,0" TextWrapping="Wrap" Text="Birthdate" VerticalAlignment="Top"/>
-        <Button Content="Log out" Command="{Binding mvm.ButtonLogOutCommand}" Click="NavigateToLoginPage_Click" HorizontalAlignment="Left" Margin="5,549,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
+        <Button Content="Log out" Click="NavigateToLoginPage_Click" HorizontalAlignment="Left" Margin="5,549,0,0" VerticalAlignment="Top" Height="20" Width="73"/>
+        <Label Content="{Binding mvm.CurrentUser.User.UserId}" HorizontalAlignment="Left" Margin="340,321,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

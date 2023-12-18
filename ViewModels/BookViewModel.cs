@@ -26,6 +26,10 @@ namespace BookBuddy.ViewModels
         public int? Rating { get => _rating; set => _rating = value; }
         public Book Book { get => _book; }
 
+        public BookViewModel()
+        {
+            
+        }
         public BookViewModel(Book book)
         {
             this._book = book;

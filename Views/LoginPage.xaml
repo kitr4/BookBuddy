@@ -84,7 +84,7 @@
             FontFamily="Cascadia Mono" 
             Margin="251,268,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+            Text="{Binding EnteredUsername, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
             VerticalAlignment="Top" 
             Width="277" 
             Height="21"/>
@@ -104,7 +104,7 @@
              FontFamily="Cascadia Mono" 
                 Margin="251,313,0,0" 
             TextWrapping="Wrap" 
-                Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                Text="{Binding EnteredPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
                  VerticalAlignment="Top" 
                     Width="277" 
                 Height="21"/>

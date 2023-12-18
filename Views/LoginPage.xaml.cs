@@ -22,7 +22,7 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class LoginPage : Page
     {
-        LoginViewModel lvm = new();
+        private readonly LoginViewModel lvm = new();
 
         public LoginPage()
         {

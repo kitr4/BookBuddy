@@ -14,7 +14,7 @@ namespace BookBuddy.Services
 {
     public class DBAccess :  IDBAccess
     {
-        private readonly string _connectionString = "Server=10.56.8.36;Database=DB_F23_USER_32;User Id=DB_F23_USER_32;Password=OPEN_DB_32;";
+        private readonly string _connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;";
 
         public async Task<IEnumerable<T>> LoadData<T, U>(string sql, U parameters)
         {

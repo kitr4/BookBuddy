@@ -7,6 +7,7 @@ using BookBuddy.Services;
 using BookBuddy.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using BookBuddy.Views;
 
 namespace BookBuddy.ViewModels
 {
@@ -24,7 +25,8 @@ namespace BookBuddy.ViewModels
         private string? _enteredUsername;
         [ObservableProperty]
         private string? _enteredPassword;
-
+        [ObservableProperty]
+        private UserViewModel _currentUser;
        
 
         public async Task LogIn(string username, string password)
@@ -34,7 +36,9 @@ namespace BookBuddy.ViewModels
                 User RetrievedUser = await DataService.VerifyAndInstantiate(username, password);
                 if (RetrievedUser != null)
                 {
-                    MainViewModel.mvm.CurrentUser = new(RetrievedUser);
+                    CurrentUser = new(RetrievedUser);
+                    StartViewModel svm = new();
+                    svm.CurrentUser = CurrentUser;
                     EnteredUsername = "";
                     EnteredPassword = "";
                 }

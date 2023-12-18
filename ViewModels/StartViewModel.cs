@@ -13,11 +13,12 @@ namespace BookBuddy.ViewModels
     public partial class StartViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-
         public StartViewModel()
         {
             _dataService = DataService.stDS;
         }
+        [ObservableProperty]
+        private UserViewModel _currentUser;
 
         public void NullifyCurrentUser()
         {
@@ -37,8 +38,7 @@ namespace BookBuddy.ViewModels
                     MainViewModel.mvm.CurrentUser.Library.Add(bookViewModel);
                 }
             }
-        }
-
+        } 
 
         [RelayCommand]
         public async Task InstantiateLibrary()

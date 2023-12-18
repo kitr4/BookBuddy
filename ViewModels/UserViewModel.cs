@@ -31,6 +31,11 @@ namespace BookBuddy.ViewModels
         [ObservableProperty]
         private ObservableCollection<BookViewModel> _library = new ObservableCollection<BookViewModel>();
 
+        public UserViewModel()
+        {
+            
+        }
+
         public UserViewModel(User user)
         {
             this._user = user;
