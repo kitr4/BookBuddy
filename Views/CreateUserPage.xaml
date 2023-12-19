@@ -53,7 +53,7 @@
             
             Click="NavigateToLoginPage_Click"/>
         <Button 
-            Command="{Binding ButtonCreateUserCommand}"
+            Command="{Binding CreateUserVM.ButtonCreateUserCommand}"
             Content="Create user" 
             FontFamily="Cascadia Mono" 
             HorizontalAlignment="Left" 
@@ -91,7 +91,7 @@
             FontFamily="Cascadia Mono" 
             Margin="250,228,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding CreatedUser.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+            Text="{Binding CreateUserVM.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
             VerticalAlignment="Top" 
             Width="278" 
             Height="21"/>
@@ -111,7 +111,7 @@
              FontFamily="Cascadia Mono" 
                 Margin="250,258,0,0" 
             TextWrapping="Wrap" 
-                Text="{Binding CreatedUser.Password1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                Text="{Binding CreateUserVM.Password1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
                  VerticalAlignment="Top" 
                     Width="277" 
                 Height="21"/>
@@ -123,7 +123,7 @@
             Margin="250,0,0,0" 
             TextWrapping="Wrap"
             TextAlignment="Center"
-            Text="{Binding CreatedUser.Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+            Text="{Binding CreateUserVM.Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
             VerticalAlignment="Center" 
             Width="277" 
             Height="20"/>
@@ -140,7 +140,7 @@
             Margin="250,320,0,0" 
             TextWrapping="Wrap"
             TextAlignment="Center"
-            Text="{Binding CreatedUser.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+            Text="{Binding CreateUserVM.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
             VerticalAlignment="Top" 
             Width="277" 
             Height="20"/>

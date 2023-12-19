@@ -47,12 +47,16 @@ namespace BookBuddy.ViewModels
 
         public void NullifyFields()
         {
-            this.User.UserId = 0;
-            this.User.Username = "";
-            this.User.Email = "";
-            this.Username = "";
-            this.Email = "";
-            this.Birthdate = DateTime.Now;
+            if (this.User != null && this.Username != "")
+            {
+                this.User.UserId = 0;
+                this.User.Username = "";
+                this.User.Email = "";
+                this.Username = "";
+                this.Email = "";
+                this.Birthdate = DateTime.Now;
+            }
+          
         }
     }
 

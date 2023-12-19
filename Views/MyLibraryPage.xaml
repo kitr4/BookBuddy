@@ -82,7 +82,7 @@
         <Label Content="{Binding MyLibraryVM.SelectedBook.Rating}" HorizontalAlignment="Left" Margin="630,567,0,0" VerticalAlignment="Top" Height="33" Width="25"/>
         <Label Content="Stars" HorizontalAlignment="Left" Margin="642,567,0,0" VerticalAlignment="Top"/>
         <Button Content="Remove from library" Command="{Binding MyLibraryVM.ButtonRemoveFromLibraryCommand}" HorizontalAlignment="Left" Margin="400,529,0,0" VerticalAlignment="Top" Height="38" Width="122"/>
-        <TextBox HorizontalAlignment="Left" Margin="208,245,0,0" TextWrapping="Wrap" Text="{Binding MyLibraryVM.SelectedBook.Book.BookId}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="233,324,0,0" TextWrapping="Wrap" Text="{Binding MyLibraryVM.CurrentUser.User.UserId}" VerticalAlignment="Top" Width="120"/>
+        <Image Source="{Binding MyLibraryVM.SelectedBook.Book.Image}" HorizontalAlignment="Left" Height="286" Margin="191,63,0,0" VerticalAlignment="Top" Width="255"/>
+        <TextBox HorizontalAlignment="Left" Margin="168,362,0,0" TextWrapping="Wrap" Text="{Binding MyLibraryVM.SelectedBook.Description}" VerticalAlignment="Top" Width="288" Height="137"/>
     </Grid>
 </Page>

@@ -19,6 +19,8 @@ namespace BookBuddy.ViewModels
         private string? _language;
         [ObservableProperty]
         private int? _rating;
+        [ObservableProperty]
+        private byte[]? _image;
 
         // Properties
         public string? Genre { get => _genre; set => _genre = value; }
@@ -26,8 +28,6 @@ namespace BookBuddy.ViewModels
         public string? Description { get => _description; set => _description = value; }
         public int? Year { get => _year; set => _year = value; }
         public string? Language { get => _language; set => _language = value; }
-        
-        
 
         public BookViewModel()
         {
@@ -36,12 +36,13 @@ namespace BookBuddy.ViewModels
         public BookViewModel(Book book)
         {
             this.Book = book;
-            this.Genre = book.Genre;
             this.Title = book.Title;
             this.Description = book.Description;
+            this.Genre = book.Genre;
             this.Year = book.Year;
             this.Language = book.Language;
             this.Rating = book.Rating;
+            this.Image = book.Image;
         }
     }
 }

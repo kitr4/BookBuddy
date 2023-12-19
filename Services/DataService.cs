@@ -53,7 +53,7 @@ namespace BookBuddy.Services
 
         public async Task<bool> IfUserExists(string username, string email)
         {
-            var parameters = new { Username = username, Password = email };
+            var parameters = new { Username = username, Email = email };
 
             var result = await DB.LoadData<User, dynamic>("spIfUserExists", parameters);
             return result.Any(); // Check if there's any result, implying the user exists

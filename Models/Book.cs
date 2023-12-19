@@ -16,6 +16,7 @@ namespace BookBuddy.Models
         private int? _year;
         private string? _language;
         private int? _rating;
+        private byte[]? _image; // Added property for image
 
         // Properties
         public string? Genre { get => _genre; set => _genre = value; }
@@ -25,6 +26,9 @@ namespace BookBuddy.Models
         public int? Year { get => _year; set => _year = value; }
         public string? Language { get => _language; set => _language = value; }
         public int? Rating { get => _rating; set => _rating = value; }
+        public byte[]? Image { get => _image; set => _image = value; }
+        
+
 
 
         // private Author author;

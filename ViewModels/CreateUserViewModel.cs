@@ -18,7 +18,6 @@ namespace BookBuddy.ViewModels
         public CreateUserViewModel(DataService DS)
         {
             _dataService = DS;
-
         }
 
         public DataService DataService { get { return _dataService; } }
@@ -66,7 +65,7 @@ namespace BookBuddy.ViewModels
 
             if (isValidated)
             {
-                await DataService.CreateUser(Username, Email, IdenticalPassword, Birthdate);
+                await DataService.CreateUser(Username, IdenticalPassword, Email, Birthdate);
                 NullifyFields();
             }
         }
