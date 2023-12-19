@@ -21,11 +21,10 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class SearchBookPage : Page
     {
-        public SearchViewModel svm = new();
-        public SearchBookPage()
+        public SearchBookPage(MainViewModel mvm)
         {
+            DataContext = mvm;
             InitializeComponent();
-            DataContext = svm;
         }
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {

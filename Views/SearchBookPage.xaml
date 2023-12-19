@@ -72,22 +72,22 @@
                 VerticalAlignment="Top"
                 Height="30" 
                 Width="84"
-                Command="{Binding SearchBookCommand}"
+                Command="{Binding SearchVM.SearchBookCommand}"
                 />
         <TextBox x:Name="searchTextBox" HorizontalAlignment="Left" 
                  Height="22" 
                  Margin="284,132,0,0" 
                  TextWrapping="Wrap" 
-                 Text="{Binding SearchText}"    
+                 Text="{Binding SearchVM.SearchText}"    
                  VerticalAlignment="Top" Width="222">
             <h:Interaction.Triggers>
                 <h:EventTrigger EventName="GotFocus">
-                    <h:InvokeCommandAction Command="{Binding ClearSearchTextCommand}" CommandParameter="{Binding ElementName=searchTextBox}" />
+                    <h:InvokeCommandAction Command="{Binding SearchVM.ClearSearchTextCommand}" CommandParameter="{Binding ElementName=searchTextBox}" />
                 </h:EventTrigger>
             </h:Interaction.Triggers>
         </TextBox>
-        <ListBox SelectedItem="{Binding mvm.Selecte_dbook, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" ItemsSource="{Binding BookList}" DisplayMemberPath="Title" Margin="190,243,200,194"/>
-        <Button Content="Add to My Library" HorizontalAlignment="Left" Margin="289,572,0,0" VerticalAlignment="Top" Height="55" Width="212" Background="#FFD0C3DF" Command="{Binding AddToLibraryCommand}"/>
-        <TextBox Text="{Binding mvm.Selecte_dbook.Title}" HorizontalAlignment="Left" Margin="54,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ListBox SelectedItem="{Binding SearchVM.SelectedBook}" ItemsSource="{Binding SearchVM.BookList}" DisplayMemberPath="Title" Margin="190,243,200,194"/>
+        <Button Content="Add to My Library" HorizontalAlignment="Left" Margin="289,572,0,0" VerticalAlignment="Top" Height="55" Width="212" Background="#FFD0C3DF" Command="{Binding SearchVM.ButtonAddToLibraryCommand}"/>
+        <TextBox Text="{Binding SearchVM.SelectedBook.Title}" HorizontalAlignment="Left" Margin="54,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

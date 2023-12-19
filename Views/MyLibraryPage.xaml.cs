@@ -21,10 +21,10 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class MyLibraryPage : Page
     {
-        public MyLibraryPage()
+        public MyLibraryPage(MainViewModel mvm)
         {
+            DataContext = mvm;
             InitializeComponent();
-            DataContext = MainViewModel.mvm;
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

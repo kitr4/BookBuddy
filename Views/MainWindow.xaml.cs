@@ -16,12 +16,12 @@ using BookBuddy.ViewModels;
 
 namespace BookBuddy.Views
 {
-
     public partial class MainWindow : Window
     {
-
-        public MainWindow()
+        private readonly MainViewModel viewModel;
+        public MainWindow(MainViewModel mvm)
         {
+            viewModel = mvm;
             InitializeComponent();
             NavigateToLoginPage();
         }
@@ -30,27 +30,31 @@ namespace BookBuddy.Views
         #region Navigation
         public void NavigateToMyLibraryPage()
         {
-            MainFrame.Navigate(new MyLibraryPage());
+            MyLibraryPage myLibraryPage = new MyLibraryPage(viewModel);
+            MainFrame.Navigate(myLibraryPage);
         }
         public void NavigateToSearchBookPage()
         {
-            MainFrame.Navigate(new SearchBookPage());
+            SearchBookPage searchBookPage = new SearchBookPage(viewModel);
+            MainFrame.Navigate(searchBookPage);
         }
 
         public void NavigateToStartPage()
         {
-            MainFrame.Navigate(new StartPage());
+            StartPage startPage = new StartPage(viewModel);
+            MainFrame.Navigate(startPage);
         }
 
         public void NavigateToCreateUserPage()
         {
-            MainFrame.Navigate(new CreateUserPage());
+            CreateUserPage createUserPage = new CreateUserPage(viewModel);
+            MainFrame.Navigate(createUserPage);
         }
 
-        // TO-DO: Fix
-        public void NavigateToLoginPage() 
+        public void NavigateToLoginPage()
         {
-            MainFrame.Navigate(new LoginPage());
+            LoginPage loginPage = new LoginPage(viewModel);
+            MainFrame.Navigate(loginPage);
         }
         public void GoBack()
         {

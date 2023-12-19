@@ -17,19 +17,31 @@ namespace BookBuddy.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        //public static MainViewModel mvm { get; } = new MainViewModel();
-        //private readonly UserViewModel _currentUser;
-        //private readonly BookViewModel _selectedBook;
-        
+        private readonly DataService _dataService;
+        [ObservableProperty]
+        private UserViewModel _currentUser;
+        [ObservableProperty]
+        private LoginViewModel _loginVM;
+        [ObservableProperty]
+        private CreateUserViewModel _createUserVM;
+        [ObservableProperty]
+        private StartViewModel _startVM;
+        [ObservableProperty]
+        private MyLibraryViewModel _myLibraryVM;
+        [ObservableProperty]
+        private SearchViewModel _searchVM; 
 
-
-        //private UserViewModel _currentUser;
-
-        //public UserViewModel CurrentUser 
-        //{ 
-        //    get { return _currentUser; } 
-        //    set { _currentUser = value; } 
-        //}
+        public MainViewModel(IDBAccess DBAccess)
+        {
+            _dataService = new DataService(DBAccess);
+            CurrentUser = new UserViewModel();
+            CreateUserVM = new(_dataService);
+            LoginVM = new(CurrentUser, _dataService);
+            CreateUserVM = new(_dataService);
+            StartVM = new(CurrentUser, _dataService);
+            MyLibraryVM = new(CurrentUser, _dataService);
+            SearchVM = new(CurrentUser, _dataService);
+        }
     }
 
 }

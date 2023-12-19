@@ -1,15 +1,18 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BookBuddy.Models
 {
-    public class User
+    public partial class User : ObservableObject
     {
         // Private backingfields
+        
         private int _userId;
         private string _userName;
         private string _email;

@@ -56,7 +56,7 @@
         <Image HorizontalAlignment="Left" Height="92" Margin="709,10,0,0" VerticalAlignment="Top" Width="110" Source="/Views/hiBooky.jpg"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="10,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"/>
         <Label Content="{Binding CurrentUser.Username}" HorizontalAlignment="Left" Margin="22,137,0,0" VerticalAlignment="Top" Height="33" Width="88"/>
-        <ListBox HorizontalAlignment="Left" Height="409" Margin="544,120,0,0" VerticalAlignment="Top" Width="232" SelectedItem="{Binding CurrentBook}" ItemsSource="{Binding CurrentUser.Library}" DisplayMemberPath="Title" Background="#FF1F7EBD" Foreground="#FF16E8C2"/>
+        <ListBox HorizontalAlignment="Left" Height="409" Margin="544,120,0,0" VerticalAlignment="Top" Width="232" SelectedItem="{Binding MyLibraryVM.SelectedBook, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CurrentUser.Library}" DisplayMemberPath="Title" Background="#FF1F7EBD" Foreground="#FF16E8C2"/>
         <Button Click="GoBack_Click"  Content="Back" HorizontalAlignment="Left" Height="32" Margin="9,564,0,0" VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
@@ -77,10 +77,12 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Button Command="{Binding ButtonRateBookCommand}" Content="Rate book" HorizontalAlignment="Left" Margin="539,534,0,0" VerticalAlignment="Top" Height="33" Width="65"/>
-        <Slider x:Name="RatingSlider" Value="{Binding CurrentBook.Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
-        <Label Content="{Binding CurrentBook.Rating}" HorizontalAlignment="Left" Margin="630,567,0,0" VerticalAlignment="Top" Height="33" Width="25"/>
+        <Button Command="{Binding MyLibraryVM.ButtonRateBookCommand}" Content="Rate book" HorizontalAlignment="Left" Margin="539,534,0,0" VerticalAlignment="Top" Height="33" Width="65"/>
+        <Slider x:Name="RatingSlider" Value="{Binding MyLibraryVM.SelectedBook.Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="632,542,0,0" VerticalAlignment="Top" Width="139" Height="25"/>
+        <Label Content="{Binding MyLibraryVM.SelectedBook.Rating}" HorizontalAlignment="Left" Margin="630,567,0,0" VerticalAlignment="Top" Height="33" Width="25"/>
         <Label Content="Stars" HorizontalAlignment="Left" Margin="642,567,0,0" VerticalAlignment="Top"/>
-        <Button Content="Remove from library" HorizontalAlignment="Left" Margin="400,529,0,0" VerticalAlignment="Top" Height="38" Width="122"/>
+        <Button Content="Remove from library" Command="{Binding MyLibraryVM.ButtonRemoveFromLibraryCommand}" HorizontalAlignment="Left" Margin="400,529,0,0" VerticalAlignment="Top" Height="38" Width="122"/>
+        <TextBox HorizontalAlignment="Left" Margin="208,245,0,0" TextWrapping="Wrap" Text="{Binding MyLibraryVM.SelectedBook.Book.BookId}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="233,324,0,0" TextWrapping="Wrap" Text="{Binding MyLibraryVM.CurrentUser.User.UserId}" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Page>

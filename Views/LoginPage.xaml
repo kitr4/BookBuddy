@@ -49,9 +49,8 @@
             Background="#FFFFEFEF" 
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
-            Command="{Binding ButtonLogInCommand}"
+            Command="{Binding LoginVM.ButtonLogInCommand}"
             Click="NavigateToStartPage_Click"
-            
             />
         <Button 
             Content="Create user" 
@@ -63,7 +62,7 @@
             Background="#FFFFEFEF"  
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9" 
-            Command="{Binding ButtonCreateUserCommand}"
+            Command="{Binding LoginVM.ButtonCreateUserCommand}"
             Click="NavigateToCreateUserPage_Click"/>
         <Label 
             Content="Username" 
@@ -84,7 +83,7 @@
             FontFamily="Cascadia Mono" 
             Margin="251,268,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding EnteredUsername, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+            Text="{Binding LoginVM.EnteredUsername, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
             VerticalAlignment="Top" 
             Width="277" 
             Height="21"/>
@@ -104,12 +103,13 @@
              FontFamily="Cascadia Mono" 
                 Margin="251,313,0,0" 
             TextWrapping="Wrap" 
-                Text="{Binding EnteredPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                Text="{Binding LoginVM.EnteredPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
                  VerticalAlignment="Top" 
                     Width="277" 
                 Height="21"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+        <TextBox HorizontalAlignment="Left" Margin="635,214,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.User.UserId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

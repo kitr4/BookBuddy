@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookBuddy.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BookBuddy.ViewModels
 {
-    public class BookViewModel
+    public partial class BookViewModel : ObservableObject
     {
+        [ObservableProperty]
         private Book _book;
         private string? _genre;
         private string? _title;
         private string? _description;
         private int? _year;
         private string? _language;
+        [ObservableProperty]
         private int? _rating;
 
         // Properties
@@ -23,8 +26,8 @@ namespace BookBuddy.ViewModels
         public string? Description { get => _description; set => _description = value; }
         public int? Year { get => _year; set => _year = value; }
         public string? Language { get => _language; set => _language = value; }
-        public int? Rating { get => _rating; set => _rating = value; }
-        public Book Book { get => _book; }
+        
+        
 
         public BookViewModel()
         {
@@ -32,7 +35,7 @@ namespace BookBuddy.ViewModels
         }
         public BookViewModel(Book book)
         {
-            this._book = book;
+            this.Book = book;
             this.Genre = book.Genre;
             this.Title = book.Title;
             this.Description = book.Description;

@@ -14,18 +14,20 @@ namespace BookBuddy.ViewModels
     public partial class SearchViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-
-        public SearchViewModel()
-        {
-            _dataService = DataService.stDS;
-        }
         public DataService DataService { get { return _dataService; } }
+
+        public SearchViewModel(UserViewModel currentUser, DataService DS)
+        {
+            _dataService = DS;
+            CurrentUser = currentUser;
+        }
+
+        [ObservableProperty]
+        private UserViewModel _currentUser;
         [ObservableProperty]
         private BookViewModel? _selectedBook;
-
         [ObservableProperty]
         private string _searchText = "Search for booktitle, name of author....";
-
         [ObservableProperty]
         private ObservableCollection<BookViewModel> _bookList = new();
 
@@ -46,12 +48,12 @@ namespace BookBuddy.ViewModels
             SearchText = string.Empty;
         }
         [RelayCommand]
-        public async Task AddToLibrary()
+        public async Task ButtonAddToLibrary()
         {
-            if (SelectedBook != null && MainViewModel.mvm.CurrentUser != null && MainViewModel.mvm.CurrentUser.Library.Contains(SelectedBook))
+            if (SelectedBook != null && CurrentUser != null && !CurrentUser.Library.Contains(SelectedBook))
             {
-                MainViewModel.mvm.CurrentUser.Library.Add(SelectedBook);
-                await DataService.AddToLibrary(SelectedBook.Book, MainViewModel.mvm.CurrentUser.User);
+                CurrentUser.Library.Add(SelectedBook);
+                await DataService.AddToLibrary(SelectedBook.Book, CurrentUser.User);
             }
         }
     }

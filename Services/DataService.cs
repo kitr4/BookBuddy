@@ -11,18 +11,17 @@ namespace BookBuddy.Services
 {
     public class DataService
     {
-        private static readonly DataService _stDS = new DataService();
+        //private static readonly DataService _stDS = new DataService();
         private readonly IDBAccess _db;
 
         // this string is already on our _db object private static readonly string connectionString = "Server=10.56.8.36;Database=_db_F23_32;User Id=_db_F23_USER_32;Password=OPEN_db_32;";
-        private DataService()
+        public DataService(IDBAccess DBAccess)
         {
-            IDBAccess dbAccess = new DBAccess();
-            _db = dbAccess;
+            _db = DBAccess;
         }
         public IDBAccess DB { get { return _db; } }
 
-        public static DataService stDS => _stDS;
+        //public static DataService stDS => _stDS;
         
         // Thomas foretrækker at vi gør det på den manuelle måde, som her
         //public async Task<bool> IfUserExists(string username, string email)
@@ -69,7 +68,7 @@ namespace BookBuddy.Services
 
         public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
         {
-            await _db.SaveData("spAddToLibrary", new
+            await DB.SaveData("spAddToLibrary", new
             {
                 UserId = CurrentUser.UserId,
                 BookId = CurrentBook.BookId
@@ -84,13 +83,13 @@ namespace BookBuddy.Services
                 BookId = CurrentBook.BookId
             });
         }
-        public async Task RateBook(Book CurrentBook, User CurrentUser)
+        public async Task RateBook(int? rating, Book CurrentBook, User CurrentUser)
         {
             await DB.SaveData("spRateBook", new
             {
                 BookId = CurrentBook.BookId,
                 UserId = CurrentUser.UserId,
-                Rating = CurrentBook.Rating
+                Rating = rating
             });
         }
 
@@ -128,7 +127,7 @@ namespace BookBuddy.Services
         {
             var parameters = new { Username = username, Password = password };
 
-            var result = await _db.LoadData<int, dynamic>("spVerifyCredentials", parameters);
+            var result = await DB.LoadData<int, dynamic>("spVerifyCredentials", parameters);
             int userId = result.FirstOrDefault(); 
 
             return userId;

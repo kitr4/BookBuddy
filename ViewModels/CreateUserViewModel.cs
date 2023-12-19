@@ -14,12 +14,11 @@ namespace BookBuddy.ViewModels
     public partial class CreateUserViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-        private readonly UserViewModel _currentUser;
 
-        public CreateUserViewModel(UserViewModel currentUser)
+        public CreateUserViewModel(DataService DS)
         {
-            _dataService = DataService.stDS;
-            _currentUser = currentUser;
+            _dataService = DS;
+
         }
 
         public DataService DataService { get { return _dataService; } }

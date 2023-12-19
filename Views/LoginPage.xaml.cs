@@ -22,12 +22,11 @@ namespace BookBuddy.Views
     /// </summary>
     public partial class LoginPage : Page
     {
-        private readonly LoginViewModel lvm = new();
-
-        public LoginPage()
+        public LoginPage(MainViewModel mvm)
         {
+            DataContext = mvm;
             InitializeComponent();
-            DataContext = lvm;
+            
         }
 
         private void NavigateToStartPage_Click(object sender, RoutedEventArgs e)

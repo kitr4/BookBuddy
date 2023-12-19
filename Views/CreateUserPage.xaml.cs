@@ -21,14 +21,11 @@ namespace BookBuddy.Views
     /// Interaction logic for CreateUserPage.xaml
     /// </summary>
     public partial class CreateUserPage : Page
-    {
-        private readonly CreateUserViewModel cvm;
-
-        public CreateUserPage()
+    { 
+        public CreateUserPage(MainViewModel mvm)
         {
+            DataContext = mvm;
             InitializeComponent();
-            cvm = new();
-            DataContext = cvm;
         }
 
         private void NavigateToLoginPage_Click(object sender, RoutedEventArgs e)

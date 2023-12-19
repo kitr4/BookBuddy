@@ -18,18 +18,20 @@ namespace BookBuddy
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            MainWindow mainWindow = new MainWindow();
+            protected override void OnStartup(StartupEventArgs e)
+            {
+                DBAccess dBAccess = new DBAccess();
+                MainViewModel mvm = new MainViewModel(dBAccess);
+                MainWindow mainWindow = new MainWindow(mvm);
+                mainWindow.DataContext = mvm;
             
-            // Create LoginPage and set it as the content of MainWindow
-            // Show the MainWindow 
-            mainWindow.Show();
-        }
+                mainWindow.Show();
+                mainWindow.Activate();
+                base.OnStartup(e);
+            }
         public App()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
