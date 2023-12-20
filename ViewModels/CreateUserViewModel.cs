@@ -51,25 +51,13 @@ namespace BookBuddy.ViewModels
         {
             if (isValidated)
             {
-                Username = "";
-                Password1 = "";
-                Password2 = "";
-                Email = "";
-                IdenticalPassword = "";
+                this.Username = "";
+                this.Password1 = "";
+                this.Password2 = "";
+                this.Email = "";
+                this.IdenticalPassword = "";
             }
         }
-
-        public async Task CreateUser()
-        {
-            isValidated = await CreateUserValidation(Username, Email, Password1, Password2);
-
-            if (isValidated)
-            {
-                await DataService.CreateUser(Username, IdenticalPassword, Email, Birthdate);
-                NullifyFields();
-            }
-        }
-
         private async Task<bool> CreateUserValidation(string username, string email, string password1, string password2)
         {
             if (password1 != password2)
@@ -92,10 +80,26 @@ namespace BookBuddy.ViewModels
 
         // Method called when the "Create User" button is clicked
         [RelayCommand]
+        private void ButtonBack()
+        {
+            this.Username = "";
+            this.Password1 = "";
+            this.Password2 = "";
+            this.Email = "";
+            this.IdenticalPassword = "";
+        }
+        [RelayCommand]
         private async Task ButtonCreateUser()
         {
-            await CreateUser();
+            isValidated = await CreateUserValidation(Username, Email, Password1, Password2);
+
+            if (isValidated)
+            {
+                await DataService.CreateUser(Username, IdenticalPassword, Email);
+                NullifyFields();
+            }
         }
+        
     }
     
 }

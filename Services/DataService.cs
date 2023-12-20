@@ -149,9 +149,9 @@ namespace BookBuddy.Services
             }
         }
 
-        public async Task CreateUser(string username, string password, string email, DateTime birthdate)
+        public async Task CreateUser(string username, string password, string email)
         {
-            await DB.SaveData("spCreateUser", new { Username = username, Password = password, Email = email, Birthdate = birthdate });
+            await DB.SaveData("spCreateUser", new { Username = username, Password = password, Email = email});
         }
 
         public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)

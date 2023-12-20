@@ -13,24 +13,20 @@ namespace BookBuddy.Models
         private int _authorId;
         private ObservableCollection<Book> _booksWritten = new ObservableCollection<Book>();
         private string _name;
-        private string _country;
-        private DateTime birthdate;
-
+        private string _nationality;
 
         // Properties
         public int AuthorId { get => _authorId; set => _authorId = value; }
         public ObservableCollection<Book> BooksWritten { get => _booksWritten; set => _booksWritten = value; }
         public string Name { get => _name; set => _name = value; }
-        public string Country { get => _country; set => _country = value; }
-        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
+        public string Nationality { get => _nationality; set => _nationality = value; }
 
-        public Author(int authorId, ObservableCollection<Book> booksWritten, string name, string country, DateTime birthdate)
+        public Author(int authorId, ObservableCollection<Book> booksWritten, string name, string nationality, DateTime birthdate)
         {
             AuthorId = authorId;
             BooksWritten = booksWritten;
             Name = name;
-            Country = country;
-            this.Birthdate = birthdate;
+            Nationality = nationality;
         }
 
        

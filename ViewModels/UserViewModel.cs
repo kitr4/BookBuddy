@@ -11,30 +11,30 @@ namespace BookBuddy.ViewModels
 {
     public partial class UserViewModel : ObservableObject
     {
-        // Backingfields
+        // Properties
+        #region Properties
         [ObservableProperty]
         private User? _user;
         [ObservableProperty]
         private string _username;
         [ObservableProperty]
         private string _email;
-        [ObservableProperty]
-        private DateTime _birthdate;
 
         // List of books
         [ObservableProperty]
         private ObservableCollection<BookViewModel> _library = new ObservableCollection<BookViewModel>();
+        #endregion
 
         public UserViewModel()
         {
 
         }
+
         public UserViewModel(User user)
         {
             this._user = user;
             this.Username = _user.Username;
             this.Email = _user.Email;
-            this.Birthdate = _user.Birthdate;
             // Populates UserViewModel Library with the retrieved library on User.
         }
 
@@ -54,7 +54,6 @@ namespace BookBuddy.ViewModels
                 this.User.Email = "";
                 this.Username = "";
                 this.Email = "";
-                this.Birthdate = DateTime.Now;
             }
           
         }

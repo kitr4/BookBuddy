@@ -40,7 +40,7 @@
         Background="#FFF19E"
         >
         <Button
-            Command="{Binding ButtonLogOutCommand}"
+            Command="{Binding CreateUserVM.ButtonBackCommand}"
             Content="Back" 
             FontFamily="Cascadia Mono" 
             HorizontalAlignment="Left" 
@@ -50,7 +50,6 @@
             Background="#FFFFEFEF" 
             Foreground="#FF4D0404" 
             BorderBrush="#FF607AC9"
-            
             Click="NavigateToLoginPage_Click"/>
         <Button 
             Command="{Binding CreateUserVM.ButtonCreateUserCommand}"
@@ -80,12 +79,12 @@
             FontFamily="Cascadia Mono" 
             Background="White" Width="76"/>
         <Label 
-    Content="Again" 
-    HorizontalAlignment="Left" 
-    Margin="150,0,0,0" 
-    VerticalAlignment="Center" 
-    FontFamily="Cascadia Mono" 
-    Background="White" Width="76"/>
+            Content="Again" 
+            HorizontalAlignment="Left" 
+            Margin="150,287,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Cascadia Mono" 
+            Background="White" Width="76"/>
         <TextBox 
             HorizontalAlignment="Left" 
             FontFamily="Cascadia Mono" 
@@ -115,18 +114,18 @@
                  VerticalAlignment="Top" 
                     Width="277" 
                 Height="21"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
-        <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
         <TextBox 
             HorizontalAlignment="Left" 
-            FontFamily="Cascadia Mono" 
-            Margin="250,0,0,0" 
-            TextWrapping="Wrap"
-            TextAlignment="Center"
-            Text="{Binding CreateUserVM.Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-            VerticalAlignment="Center" 
-            Width="277" 
-            Height="20"/>
+             FontFamily="Cascadia Mono" 
+                Margin="250,288,0,0" 
+            TextWrapping="Wrap" 
+                Text="{Binding CreateUserVM.Password2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                 VerticalAlignment="Top" 
+                    Width="277" 
+                Height="21"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
+
         <Label 
             Content="Email" 
             HorizontalAlignment="Left"  
@@ -139,25 +138,8 @@
             FontFamily="Cascadia Mono" 
             Margin="250,320,0,0" 
             TextWrapping="Wrap"
-            TextAlignment="Center"
+            TextAlignment="Left"
             Text="{Binding CreateUserVM.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-            VerticalAlignment="Top" 
-            Width="277" 
-            Height="20"/>
-        <Label 
-            Content="Birthdate" 
-            HorizontalAlignment="Left"  
-            Margin="150,346,0,0" 
-            VerticalAlignment="Top" 
-            FontFamily="Cascadia Mono" 
-            Background="White" Width="76"/>
-        <TextBox 
-            HorizontalAlignment="Left" 
-            FontFamily="Cascadia Mono" 
-            Margin="250,348,0,0" 
-            TextWrapping="Wrap"
-            TextAlignment="Center"
-            Text=""
             VerticalAlignment="Top" 
             Width="277" 
             Height="20"/>

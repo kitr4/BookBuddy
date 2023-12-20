@@ -109,7 +109,6 @@
                 Height="21"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="418,43,0,0" VerticalAlignment="Top" Width="100"/>
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
-        <TextBox HorizontalAlignment="Left" Margin="635,214,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.User.UserId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Page>

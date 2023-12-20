@@ -13,6 +13,7 @@ namespace BookBuddy.ViewModels
 {
     public partial class SearchViewModel : ObservableObject
     {
+        // Dependencies
         private readonly DataService _dataService;
         public DataService DataService { get { return _dataService; } }
 
@@ -22,6 +23,8 @@ namespace BookBuddy.ViewModels
             CurrentUser = currentUser;
         }
 
+        
+        #region Properties
         [ObservableProperty]
         private UserViewModel _currentUser;
         [ObservableProperty]
@@ -30,7 +33,8 @@ namespace BookBuddy.ViewModels
         private string _searchText = "Search for booktitle, name of author....";
         [ObservableProperty]
         private ObservableCollection<BookViewModel> _bookList = new();
-
+        #endregion
+        #region Commands
         [RelayCommand]
         public async Task SearchBook()
         {
@@ -56,5 +60,6 @@ namespace BookBuddy.ViewModels
                 await DataService.AddToLibrary(SelectedBook.Book, CurrentUser.User);
             }
         }
+        #endregion
     }
 }

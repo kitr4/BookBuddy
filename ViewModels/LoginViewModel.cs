@@ -14,7 +14,7 @@ namespace BookBuddy.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-   
+
         public LoginViewModel(UserViewModel uvm, DataService DS)
         {
             _dataService = DS;
@@ -30,21 +30,28 @@ namespace BookBuddy.ViewModels
         private string? _enteredUsername;
         [ObservableProperty]
         private string? _enteredPassword;
-        
 
-        public async Task LogIn(string username, string password)
+
+        //public async Task LogIn(string username, string password)
+        //{
+        //    await Task.Run(async () =>
+        //    {
+        //        User RetrievedUser = await DataService.VerifyAndInstantiate(username, password);
+        //        if (RetrievedUser != null)
+        //        {
+        //            CurrentUser.SetProperties(new(RetrievedUser));
+        //            EnteredUsername = "";
+        //            EnteredPassword = "";
+        //            await InstantiateLibrary();
+        //        }
+        //    });
+        //}
+       
+
+        public async Task InstantiateLibrary()
         {
-            await Task.Run(async () =>
-            {
-                User RetrievedUser = await DataService.VerifyAndInstantiate(username, password);
-                if (RetrievedUser != null)
-                {
-                    CurrentUser.SetProperties(new(RetrievedUser));
-                    EnteredUsername = "";
-                    EnteredPassword = "";
-                    await InstantiateLibrary();
-                }
-            });
+            List<Book> retrievedList = await _dataService.RetrieveLibrary(CurrentUser.User.UserId);
+            ConvertBookToBVMAndPopulate(retrievedList);
         }
         public void ConvertBookToBVMAndPopulate(List<Book> bookList)
         {
@@ -58,21 +65,23 @@ namespace BookBuddy.ViewModels
             }
         }
 
-        public async Task InstantiateLibrary()
-        {
-            List<Book> retrievedList = await _dataService.RetrieveLibrary(CurrentUser.User.UserId);
-            ConvertBookToBVMAndPopulate(retrievedList);
-        }
-
-
         [RelayCommand]
         public async Task ButtonLogIn()
         {
-            await LogIn(EnteredUsername, EnteredPassword);
+            await Task.Run(async () =>
+            {
+                User RetrievedUser = await DataService.VerifyAndInstantiate(EnteredUsername, EnteredPassword);
 
-            // await InstantiateLibrary(); 
+                if (RetrievedUser != null)
+                {
+                    CurrentUser.SetProperties(new(RetrievedUser));
+                    EnteredUsername = "";
+                    EnteredPassword = "";
+                    await InstantiateLibrary();
+                    // await InstantiateLibrary(); 
+                }
+            });
+
         }
-
-
     }
 }
