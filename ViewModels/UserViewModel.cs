@@ -19,6 +19,8 @@ namespace BookBuddy.ViewModels
         private string _username;
         [ObservableProperty]
         private string _email;
+        [ObservableProperty]
+        private bool _isAdmin;
 
         // List of books
         [ObservableProperty]
@@ -35,6 +37,7 @@ namespace BookBuddy.ViewModels
             this._user = user;
             this.Username = _user.Username;
             this.Email = _user.Email;
+            this.IsAdmin = _user.isAdmin;
             // Populates UserViewModel Library with the retrieved library on User.
         }
 
@@ -43,6 +46,7 @@ namespace BookBuddy.ViewModels
             this.User = uvm.User; 
             this.Username = uvm.Username; 
             this.Email = uvm.Email;
+            this.IsAdmin = uvm.IsAdmin;
         }
 
         public void NullifyFields()

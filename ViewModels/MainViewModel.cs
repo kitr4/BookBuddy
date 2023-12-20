@@ -29,7 +29,9 @@ namespace BookBuddy.ViewModels
         [ObservableProperty]
         private MyLibraryViewModel _myLibraryVM;
         [ObservableProperty]
-        private SearchViewModel _searchVM; 
+        private SearchViewModel _searchVM;
+        [ObservableProperty]
+        private AdminViewModel _adminVM;
 
         public MainViewModel(IDBAccess DBAccess)
         {
@@ -41,6 +43,7 @@ namespace BookBuddy.ViewModels
             StartVM = new(CurrentUser, _dataService);
             MyLibraryVM = new(CurrentUser, _dataService);
             SearchVM = new(CurrentUser, _dataService);
+            AdminVM = new(CurrentUser, _dataService);
         }
     }
 

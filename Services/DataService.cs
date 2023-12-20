@@ -138,7 +138,7 @@ namespace BookBuddy.Services
             
             var userList = await DB.LoadData<User, dynamic>("spRetrieveUser", new { UserId = userId });
 
-            if (userId != 0)
+            if (userList.Any())
             {
                 return userList.ElementAt(0);
             }

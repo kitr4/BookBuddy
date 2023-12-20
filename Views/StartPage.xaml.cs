@@ -42,5 +42,9 @@ namespace BookBuddy.Views
             ((MainWindow)Window.GetWindow(this)).NavigateToLoginPage();
         }
 
+        private void NavigateToAdminPage_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(this)).NavigateToAdminPage();
+        }
     }
 }

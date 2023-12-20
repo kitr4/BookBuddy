@@ -56,6 +56,13 @@ namespace BookBuddy.Views
             LoginPage loginPage = new LoginPage(viewModel);
             MainFrame.Navigate(loginPage);
         }
+
+        public void NavigateToAdminPage()
+        {
+            AdminPage adminPage = new AdminPage(viewModel);
+            MainFrame.Navigate(adminPage);
+        }
+    
         public void GoBack()
         {
             if (MainFrame.CanGoBack)

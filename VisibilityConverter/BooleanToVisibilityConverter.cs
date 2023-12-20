@@ -17,7 +17,7 @@ namespace BookBuddy.Converters
                 {
                     return Visibility.Visible;
                 }
-                return Visibility.Collapsed; // You can change this to Visibility.Hidden if needed
+                return Visibility.Hidden; // You can change this to Visibility.Hidden if needed
             }
 
             public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

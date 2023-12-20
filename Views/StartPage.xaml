@@ -31,17 +31,14 @@
         <Button Content="My Library" Click="NavigateToMyLibraryPage_Click" Command="{Binding StartVM.InstantiateLibraryCommand}" HorizontalAlignment="Left" Margin="0,119,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="Edit profile" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="{Binding CurrentUser.User.UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,169,0,0" VerticalAlignment="Top" Height="19" Width="83"/>
-        <StackPanel>
+        <StackPanel Margin="581,154,25,422">
             <!-- Your CRUD controller -->
             <StackPanel.Resources>
                 <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             </StackPanel.Resources>
-            <Button Content="Create" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Read" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Update" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Delete" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Admin" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" Click="NavigateToAdminPage_Click" />
         </StackPanel>
-
+        <TextBox TextWrapping="Wrap" Text="{Binding CurrentUser.IsAdmin}" Margin="581,355,107,213"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="643,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"></Image>
         <TextBlock HorizontalAlignment="Left" Margin="34,305,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,326,0,0" TextWrapping="Wrap" Text="UserId" VerticalAlignment="Top"/>
