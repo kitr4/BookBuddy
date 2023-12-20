@@ -18,6 +18,7 @@ namespace BookBuddy.Models
         private string _email;
         // The password property is ONLY used for the instance of CREATING a user on CreateUserPage. When user has been created, the password field will be nullified, so the program does not contain password anywhere, aside from the moment it creates a user.
         private string? _password;
+        private bool? _isAdmin;
  
 
         private ObservableCollection<Book> _library = new ObservableCollection<Book>();
@@ -29,17 +30,18 @@ namespace BookBuddy.Models
 
 
         public ObservableCollection<Book>? Library { get => _library; set => _library = value; }
+        public bool? IsAdmin { get => _isAdmin; set => _isAdmin = value; }
 
         public User()
         {
 
         }
-        public User(int userId, string userName, string eMail, DateTime birthdate)
+        public User(int userId, string userName, string eMail, bool isadmin)
         {
             UserId = userId;
             Username = userName;
             Email = eMail;
-
+            IsAdmin = isadmin;
         }
 
     }

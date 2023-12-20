@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="StartPage">
+      Title="StartPage"
+      xmlns:converters="clr-namespace:BookBuddy.Converters"
+      >
 
     <Grid
         Background="#FFF19E"
@@ -23,12 +25,22 @@
             Foreground="Teal"/>
 
 
-
+        
         <Image HorizontalAlignment="Left" Height="204" Margin="311,10,0,0" VerticalAlignment="Top" Width="325" Source="/Views/hiBooky.jpg"/>
         <Button Content="Search book" Click="NavigateToSearchBookPage_Click" HorizontalAlignment="Left" Margin="0,91,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="My Library" Click="NavigateToMyLibraryPage_Click" Command="{Binding StartVM.InstantiateLibraryCommand}" HorizontalAlignment="Left" Margin="0,119,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="Edit profile" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Height="21" Width="83"/>
         <Button Content="{Binding CurrentUser.User.UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,169,0,0" VerticalAlignment="Top" Height="19" Width="83"/>
+        <StackPanel>
+            <!-- Your CRUD controller -->
+            <StackPanel.Resources>
+                <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            </StackPanel.Resources>
+            <Button Content="Create" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Read" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Update" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Delete" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
 
         <Image HorizontalAlignment="Left" Height="100" Margin="643,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"></Image>
         <TextBlock HorizontalAlignment="Left" Margin="34,305,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
