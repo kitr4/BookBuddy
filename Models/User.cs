@@ -28,7 +28,6 @@ namespace BookBuddy.Models
         public string Username { get => _userName; set => _userName = value; }
         public string Email { get => _email; set => _email = value; }
 
-
         public ObservableCollection<Book>? Library { get => _library; set => _library = value; }
         public bool? IsAdmin { get => _isAdmin; set => _isAdmin = value; }
 

@@ -36,10 +36,10 @@
             <StackPanel.Resources>
                 <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             </StackPanel.Resources>
-            <Button Content="Create" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Read" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Update" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Button Content="Delete" Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Create" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Read" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Update" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Content="Delete" Visibility="{Binding CurrentUser.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </StackPanel>
 
         <Image HorizontalAlignment="Left" Height="100" Margin="643,32,0,0" VerticalAlignment="Top" Width="100" Source="/Views/genericProfilePic.jpg"></Image>
