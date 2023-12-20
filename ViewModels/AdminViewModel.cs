@@ -67,11 +67,25 @@ namespace BookBuddy.ViewModels
             }
         }
 
+        public void NullifyFields()
+        {
+            if (Title != "")
+            {
+                Title = "";
+                Description = "";
+                ImagePath = "";
+                Genre = "";
+                Language = "";
+                Year = "";
+            }
+        }
 
         [RelayCommand]
         public async Task AddBookToDatabase()
         {
             await InsertBookIntoDatabase();
+            NullifyFields();
+
         }
 
 
