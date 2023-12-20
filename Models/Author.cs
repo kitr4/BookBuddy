@@ -21,7 +21,7 @@ namespace BookBuddy.Models
         public string Name { get => _name; set => _name = value; }
         public string Nationality { get => _nationality; set => _nationality = value; }
 
-        public Author(int authorId, ObservableCollection<Book> booksWritten, string name, string nationality, DateTime birthdate)
+        public Author(int authorId, ObservableCollection<Book> booksWritten, string name, string nationality)
         {
             AuthorId = authorId;
             BooksWritten = booksWritten;

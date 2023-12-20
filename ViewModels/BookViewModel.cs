@@ -12,22 +12,20 @@ namespace BookBuddy.ViewModels
     {
         [ObservableProperty]
         private Book _book;
+        [ObservableProperty]
         private string? _genre;
+        [ObservableProperty]
         private string? _title;
+        [ObservableProperty]
         private string? _description;
+        [ObservableProperty]
         private int? _year;
+        [ObservableProperty]
         private string? _language;
         [ObservableProperty]
         private int? _rating;
         [ObservableProperty]
         private byte[]? _image;
-
-        // Properties
-        public string? Genre { get => _genre; set => _genre = value; }
-        public string? Title { get => _title; set => _title = value; }
-        public string? Description { get => _description; set => _description = value; }
-        public int? Year { get => _year; set => _year = value; }
-        public string? Language { get => _language; set => _language = value; }
 
         public BookViewModel()
         {

@@ -149,26 +149,69 @@ namespace BookBuddy.Services
             }
         }
 
+        public async Task UpdateBook(Book book)
+        {
+            await DB.SaveData("spUpdateBook", new { BookId = book.BookId, Title = book.Title, Description = book.Description, Language = book.Language, Genre = book.Genre, Image = book.Image, Year = book.Year });
+        }
+        public async Task DeleteBook(Book book)
+        {
+            await DB.SaveData("spDeleteBook", new { BookId = book.BookId });
+        }
+        public async Task DeleteUser(User user)
+        {
+            await DB.SaveData("spDeleteUser", new {UserId = user.UserId});
+        }
+        public async Task UpdateUser(User user)
+        {
+            await DB.SaveData("spUpdateUser", new { UserId = user.UserId, Username = user.Username, Email = user.Email, isAdmin = user.isAdmin });
+        }
+        public async Task CreateAuthor(string name, string nationality)
+        {
+            await DB.SaveData("spCreateAuthor", new { Name = name, Nationality = nationality});
+        }
+        public async Task UpdateAuthor(Author author)
+        {
+            await DB.SaveData("spUpdateAuthor", new { AuthorId = author.AuthorId, Name = author.Name, Nationality = author.Nationality });
+        }
+        public async Task DeleteAuthor(Author author)
+        {
+            await DB.SaveData("spDeleteAuthor", new { AuthorId = author.AuthorId });
+        }
+
+        public async Task<List<User>> SearchUser(string searchtext)
+        {
+            List<User> userResults = new();
+            var users = await DB.LoadData<User, dynamic>("spSearchUser", new
+            {
+                searchString = searchtext
+            });
+            foreach (var user in users)
+            {
+                userResults.Add(user);
+            }
+            return userResults;
+        }
+
         public async Task CreateUser(string username, string password, string email)
         {
             await DB.SaveData("spCreateUser", new { Username = username, Password = password, Email = email});
         }
 
-        public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)
-        {
-            ObservableCollection<Book> booklist = new();
-            var books = await DB.LoadData<Book, dynamic>("spSearchBook", new 
-            { Title = currentBook.Title, 
-                Description = currentBook.Description, 
-                Genre = currentBook.Genre, Year = 
-                currentBook.Year 
-            });
-            foreach (var book in books)
-            {
-                booklist.Add(book);
-            }
-            return booklist;
-        }
+        //public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)
+        //{
+        //    ObservableCollection<Book> booklist = new();
+        //    var books = await DB.LoadData<Book, dynamic>("spSearchBook", new 
+        //    { Title = currentBook.Title, 
+        //        Description = currentBook.Description, 
+        //        Genre = currentBook.Genre, Year = 
+        //        currentBook.Year 
+        //    });
+        //    foreach (var book in books)
+        //    {
+        //        booklist.Add(book);
+        //    }
+        //    return booklist;
+        //}
 
         public async Task<List<Book>> RetrieveLibrary(int userId)
         {
