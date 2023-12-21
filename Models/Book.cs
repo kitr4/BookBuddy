@@ -16,7 +16,7 @@ namespace BookBuddy.Models
         private int? _year;
         private string? _language;
         private int? _rating;
-        private byte[]? _image; // Added property for image
+        private byte[]? _image; 
 
         // Properties
         public string? Genre { get => _genre; set => _genre = value; }
@@ -28,12 +28,6 @@ namespace BookBuddy.Models
         public int? Rating { get => _rating; set => _rating = value; }
         public byte[]? Image { get => _image; set => _image = value; }
         
-
-
-
-        // private Author author;
-        // Ville det give mening at tage denne med? Hvis vi istedet laver en liste på hver author der creates og tilføjer bog med et hvis ID (hentet fra author_books) og tilføjer bogen til instantiering af author, er det vel ikke nødvendigt at have bogen tilkoblet. private string _author;
-
         public Book()
         {
 

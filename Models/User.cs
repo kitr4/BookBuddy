@@ -18,7 +18,6 @@ namespace BookBuddy.Models
         private string _email;
         private bool _isAdmin = false;
  
-
         private ObservableCollection<Book> _library = new ObservableCollection<Book>();
 
         // Properties
