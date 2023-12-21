@@ -178,6 +178,20 @@ namespace BookBuddy.Services
             await DB.SaveData("spDeleteAuthor", new { AuthorId = author.AuthorId });
         }
 
+        public async Task<List<Author>> SearchAuthor(string searchtext)
+        {
+            List<Author> authorResults = new();
+            var authors = await DB.LoadData<Author, dynamic>("spSearchAuthor", new
+            {
+                searchString = searchtext
+            });
+            foreach (var author in authors)
+            {
+                authorResults.Add(author);
+            }
+            return authorResults;
+        }
+
         public async Task<List<User>> SearchUser(string searchtext)
         {
             List<User> userResults = new();
