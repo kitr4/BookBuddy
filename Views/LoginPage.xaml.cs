@@ -40,6 +40,11 @@ namespace BookBuddy.Views
             // Assuming the parent window has a CreateUserPage method
             ((MainWindow)Window.GetWindow(this)).NavigateToCreateUserPage();
         }
-      
+
+        private void AutoUpdatedCopyright()
+        {
+            int currentYear = DateTime.Now.Year;
+            copyrightText.Content = $"Copyright &#169; {currentYear} The EJNar Group. All rights reserved.";
+        }
     }
 }

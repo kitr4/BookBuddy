@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\bookbuddy-logo.png" />
+    <None Remove="Resources\Images\booky-greet.png" />
+    <None Remove="Resources\Images\speechbubble.png" />
     <None Remove="Views\genericProfilePic.jpg" />
     <None Remove="Views\hiBooky.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
     <Folder Include="Services\Helpers\" />
     <Folder Include="ViewModels\Commands\" />
   </ItemGroup>
@@ -27,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\bookbuddy-logo.png" />
+    <Resource Include="Resources\Images\booky-greet.png" />
+    <Resource Include="Resources\Images\speechbubble.png" />
     <Resource Include="Views\genericProfilePic.jpg" />
     <Resource Include="Views\hiBooky.jpg" />
   </ItemGroup>
