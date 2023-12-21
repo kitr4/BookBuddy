@@ -124,13 +124,13 @@
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Margin="0 0 0 64">
                 <Label Width="94" Content="Password:" FontSize="14"></Label>
-                <TextBox Width="420" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
-                    <TextBox.Resources>
+                <PasswordBox Width="420" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
+                    <PasswordBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
                         </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                    </PasswordBox.Resources>
+                </PasswordBox>
                 <Label Width="94"></Label>
             </DockPanel>
 
