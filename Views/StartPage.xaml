@@ -9,7 +9,7 @@
       xmlns:converters="clr-namespace:BookBuddy.Converters"
       >
 
-    <!--<Grid
+    <Grid
         Background="#FFF19E"
         >
         <Label 

@@ -92,7 +92,7 @@ namespace BookBuddy.ViewModels
         [RelayCommand]
         public async Task UpdateBook()
         {
-            await DataService.
+            //await DataService.
         }
 
         [RelayCommand]
