@@ -23,7 +23,7 @@ namespace BookBuddy.Views
         {
             viewModel = mvm;
             InitializeComponent();
-            NavigateToLoginPage();
+            NavigateToStartPage();
         }
 
         // If we have time, lets think about making a NavigationService instead of having it directly in the codebehind.

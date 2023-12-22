@@ -148,15 +148,15 @@
     <Grid>
         <StackPanel Width="720" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Canvas Width=" 420">
-                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\booky-greet.png" Width="32" Height="Auto" Canvas.Top="4" Canvas.Right="88"/>
+                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\booky-greet.png" Width="32" Height="Auto" Canvas.Top="8" Canvas.Right="58"/>
             </Canvas>
             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 0 0 64">
-                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\bookbuddy-logo.png" Width="180" Height="Auto" HorizontalAlignment="Stretch"/>
+                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\bookbuddy-logo.png" Width="240" Height="Auto" HorizontalAlignment="Stretch"/>
             </DockPanel>
 
             <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
                 <Label Width="132" Content="Username: * " FontSize="14" HorizontalContentAlignment="Right"/>
-                <TextBox Width="420" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
+                <TextBox Width="320" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
@@ -167,7 +167,7 @@
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
                 <Label Width="132" Content="E-mail: * " FontSize="14" HorizontalContentAlignment="Right"/>
-                <TextBox Width="420" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
+                <TextBox Width="320" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
@@ -178,7 +178,7 @@
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
                 <Label Width="132" Content="Password: * " FontSize="14" HorizontalContentAlignment="Right"></Label>
-                <PasswordBox Width="420" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
+                <PasswordBox Width="320" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
                     <PasswordBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
@@ -189,7 +189,7 @@
             </DockPanel>
             <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
                 <Label Width="132" Content="Repeat password: * " FontSize="14" HorizontalContentAlignment="Right"></Label>
-                <PasswordBox Width="420" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
+                <PasswordBox Width="320" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
                     <PasswordBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
@@ -199,27 +199,47 @@
                 <Label Width="132"></Label>
             </DockPanel>
 
-            <DockPanel Width="420" Height="32" Margin="0 0 0 64">
+            <DockPanel Width="320" Height="32" Margin="0 0 0 32">
                 <CheckBox Margin="0 0 8 0" VerticalAlignment="Center"></CheckBox>
                 <TextBlock Height="32" FontSize="14" Padding="0 5 0 0">
                     I agree to the
                     <Hyperlink NavigateUri="#">
-                        <Run Text="Terms &#38; Conditions" Foreground="Blue" TextDecorations="Underline"/>
-                    </Hyperlink>.
+                        <TextBlock Text="Terms and Conditions" FontSize="14">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Hyperlink>. *
                 </TextBlock>
             </DockPanel>
 
-            <DockPanel HorizontalAlignment="Center">
-                <Button Width="120" Height="36" Content="Create User" Margin="12 0 12 0" FontSize="13">
+            <DockPanel Width="320" HorizontalAlignment="Center">
+                <Button Width="120" Height="36" Content="Create User" Margin="0 0 12 0" FontSize="13" DockPanel.Dock="Left">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="3"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <TextBlock Width="120" Height="36" TextAlignment="Center" Padding="0 8 0 0">
+                <TextBlock Width="120" Height="36" TextAlignment="Center" Padding="0 8 0 0" Margin="12 0 0 0" HorizontalAlignment="Right">
                     <Hyperlink NavigateUri="#">
-                        <Run Text="Cancel" Foreground="Blue" TextDecorations="Underline" FontSize="14"/>
+                        <TextBlock Text="Cancel" FontSize="14">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Hyperlink>
                 </TextBlock>
             </DockPanel>

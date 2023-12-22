@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\avatar-light.png" />
+    <None Remove="Resources\Images\avatar.png" />
     <None Remove="Resources\Images\bookbuddy-logo.png" />
     <None Remove="Resources\Images\booky-greet.png" />
     <None Remove="Resources\Images\speechbubble.png" />
@@ -29,6 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\avatar-light.png" />
+    <Resource Include="Resources\Images\avatar.png" />
     <Resource Include="Resources\Images\bookbuddy-logo.png" />
     <Resource Include="Resources\Images\booky-greet.png" />
     <Resource Include="Resources\Images\speechbubble.png" />
