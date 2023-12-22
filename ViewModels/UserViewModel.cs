@@ -41,6 +41,7 @@ namespace BookBuddy.ViewModels
             // Populates UserViewModel Library with the retrieved library on User.
         }
 
+
         public void SetProperties(UserViewModel uvm)
         {
             this.User = uvm.User; 

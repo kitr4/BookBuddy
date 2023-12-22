@@ -11,6 +11,8 @@ namespace BookBuddy.ViewModels
 {
     public partial class AuthorViewModel : ObservableObject
     {
+        // Simple class that takes a author object and makes it representable as an AuthorViewModel for the page to display and the user to interact with.
+
         [ObservableProperty]
         private Author? _author;
         [ObservableProperty]

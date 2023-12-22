@@ -6,22 +6,116 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace BookBuddy.Services
 {
     public class DataService
     {
-        //private static readonly DataService _stDS = new DataService();
+        // DataService depending on an object that can perform databaseoperation. In this case, it will be of the class DBAccess.
+        // Constructor injecting allows us to easily swap out DBAccess with another, should the need arise.
         private readonly IDBAccess _db;
-
-        // this string is already on our _db object private static readonly string connectionString = "Server=10.56.8.36;Database=_db_F23_32;User Id=_db_F23_USER_32;Password=OPEN_db_32;";
         public DataService(IDBAccess DBAccess)
         {
             _db = DBAccess;
         }
         public IDBAccess DB { get { return _db; } }
 
-        public async Task<bool> IfUserExists(string username, string email)
+        //This might seem confusing, but here we are assigning a backingfield of datatype string to hold a connectionstring to our database.
+        //This will be only be used in examples of showing how you would go about retrieving and creating objects without the use of the NuGet package Z.Dapper
+        private readonly string _connectionString = "Server=10.56.8.36;Database=DB_F23_32;User Id=DB_F23_USER_32;Password=OPENDB_32;TrustServerCertificate=true;";
+        // TO-DO: Create another IDBAccess class that has these "traditional" ways of doing it
+        SqlConnection connection = new();
+        // The examples are the following, and are used on LoginViewModel when user has been validated.
+
+        public async Task<List<BookList>> RetrieveListsForUser(int userId)
+        {
+            return await Task.Run(() =>
+            {
+                List<BookList> listOfLists = new List<BookList>();
+
+                using (connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("spRetrieveLists", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserId", userId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int listid = reader.GetInt32(reader.GetOrdinal("ListId"));
+                                string listName = reader.GetString(reader.GetOrdinal("Name"));
+                                listOfLists.Add(new BookList(listid, listName));
+                            }
+                        }
+                    }
+                }
+                return listOfLists;
+            });
+        }
+
+        public async Task<List<Book>> PopulateBooksForList(int userId, int listId)
+        {
+            return await Task.Run(() =>
+            {
+                List<Book> bookList = new List<Book>();
+                SqlConnection connection = new();
+                using (connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("spPopulateList", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@ListId", listId);
+
+                        // The reader.GetBytes calls for an overload method, requiring numbers to know how much to load at once, for each time it reads, and here buffer being a fixed sized byte array holding 4096 bytes. 
+                        // There will be read 4096 bytes at a time
+
+                        List<byte> imageBytes = new List<byte>();
+                        long startIndex = 0;
+                        long bufferSize = 4096;
+                        byte[] buffer = new byte[bufferSize];
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // This loop will continue until the full image has been read, and then it will break out of the do-while loop and continue to read columns.
+                                do
+                                {
+                                    long bytesRead = reader.GetBytes(reader.GetOrdinal("Image"), startIndex, buffer, 0, (int)bufferSize);
+                                    startIndex += bytesRead;
+
+                                    imageBytes.AddRange(buffer.Take((int)bytesRead));
+                                }
+                                while (startIndex < reader.GetBytes(reader.GetOrdinal("Image"), 0, null, 0, 0));
+
+
+                                int bookId = reader.GetInt32(reader.GetOrdinal("BookId"));
+                                string title = reader.GetString(reader.GetOrdinal("Title"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string genre = reader.GetString(reader.GetOrdinal("Genre"));
+                                int year = reader.GetInt32(reader.GetOrdinal("Year"));
+                                string language = reader.GetString(reader.GetOrdinal("Language"));
+                                int rating = reader.GetInt32(reader.GetOrdinal("Rating"));
+                                byte[] image = imageBytes.ToArray();
+                                // Instantiation time. Adding to booklist, and then it reads the next entity in the database.
+                                Book book = new Book(bookId, genre, title, description, year, language, rating, image);
+                                bookList.Add(book);
+                            }
+                        }
+                    }
+                }
+                return bookList;
+            });
+        }
+    
+
+    public async Task<bool> IfUserExists(string username, string email)
         {
             var parameters = new { Username = username, Email = email };
             var result = await DB.LoadData<User, dynamic>("spIfUserExists", parameters);
@@ -71,7 +165,9 @@ namespace BookBuddy.Services
             return tempLibrary;
         }
 
-        public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
+
+
+    public async Task AddToLibrary(Book CurrentBook, User CurrentUser)
         {
             await DB.SaveData("spAddToLibrary", new
             {

@@ -32,7 +32,7 @@ namespace BookBuddy.Models
         {
 
         }
-        public Book(int bookId, string genre, string title, string description, int year, string language, int rating)
+        public Book(int bookId, string genre, string title, string description, int year, string language, int rating, byte[] image)
         {
             _bookId = bookId;
             _genre = genre;
@@ -41,7 +41,7 @@ namespace BookBuddy.Models
             _year = year;
             _language = language;
             _rating = rating;
-            
+            Image = image;
         }
     }
 }

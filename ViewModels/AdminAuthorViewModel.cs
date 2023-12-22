@@ -19,7 +19,12 @@ namespace BookBuddy.ViewModels
         {
             _dataService = DS;
         }
+
+        
         public DataService DataService { get { return _dataService; } }
+
+        // Observableproperties
+
         [ObservableProperty]
         private string _searchText;
         [ObservableProperty]
@@ -30,6 +35,7 @@ namespace BookBuddy.ViewModels
 
 
 
+        // Various CRUD commands for Admin-Author
         [RelayCommand]
         public async Task UpdateAuthor()
         {

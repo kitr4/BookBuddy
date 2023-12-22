@@ -34,6 +34,9 @@ namespace BookBuddy.ViewModels
         [ObservableProperty]
         private ObservableCollection<BookViewModel> _bookList = new();
         #endregion
+
+
+
         #region Commands
         [RelayCommand]
         public async Task SearchBook()
@@ -46,11 +49,14 @@ namespace BookBuddy.ViewModels
             }
         }
 
+        // Activated on GotFocus of searchTextBox
         [RelayCommand]
         public void ClearSearchText()
         {
             SearchText = string.Empty;
         }
+
+
         [RelayCommand]
         public async Task ButtonAddToLibrary()
         {

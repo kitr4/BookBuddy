@@ -21,13 +21,16 @@ namespace BookBuddy.Views
         private readonly MainViewModel viewModel;
         public MainWindow(MainViewModel mvm)
         {
+            // MainViewModel is being injected into an instance of MainWindow at the App layer (In the app class)
             viewModel = mvm;
             InitializeComponent();
+            // First frame is being set, by being navigated to, directly here in code behind. LoginPage is being navigated to. 
             NavigateToLoginPage();
         }
 
         // If we have time, lets think about making a NavigationService instead of having it directly in the codebehind.
         #region Navigation
+        // For each navigation method, an instance of the page is created, with the same viewModel as in the MainWindow constructor being injected into for DataContext.
         public void NavigateToMyLibraryPage()
         {
             MyLibraryPage myLibraryPage = new MyLibraryPage(viewModel);

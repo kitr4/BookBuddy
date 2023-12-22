@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookBuddy.ViewModels;
-using Z.Dapper.Plus;
 using Dapper;
 
 namespace BookBuddy.Services
@@ -25,23 +24,12 @@ namespace BookBuddy.Services
         }
              
         public async Task SaveData<T>(string sql, T parameters)
-        {
+        {           
             using IDbConnection conn = new SqlConnection(_connectionString);
 
             await conn.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure);
         }
 
-        public async Task SaveBulk<T>(T parameters)
-        {
-            using IDbConnection conn = new SqlConnection(_connectionString);
-            try
-            {
-                await conn.BulkActionAsync(x => x.BulkInsert(parameters));
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
+       
     }
 }

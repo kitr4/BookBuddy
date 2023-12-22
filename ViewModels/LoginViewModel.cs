@@ -15,44 +15,30 @@ namespace BookBuddy.ViewModels
     {
         private readonly DataService _dataService;
 
+        
         public LoginViewModel(UserViewModel uvm, DataService DS)
         {
             _dataService = DS;
             _currentUser = uvm;
         }
-
-        [ObservableProperty]
-        private UserViewModel _currentUser;
-
         public DataService DataService { get { return _dataService; } }
 
+        // ObservableProperties are being set.
+        [ObservableProperty]
+        private UserViewModel _currentUser;
         [ObservableProperty]
         private string? _enteredUsername;
         [ObservableProperty]
         private string? _enteredPassword;
 
-
-        //public async Task LogIn(string username, string password)
-        //{
-        //    await Task.Run(async () =>
-        //    {
-        //        User RetrievedUser = await DataService.VerifyAndInstantiate(username, password);
-        //        if (RetrievedUser != null)
-        //        {
-        //            CurrentUser.SetProperties(new(RetrievedUser));
-        //            EnteredUsername = "";
-        //            EnteredPassword = "";
-        //            await InstantiateLibrary();
-        //        }
-        //    });
-        //}
-       
-
+        // Instantiating library of user at verified credentials. 
         public async Task InstantiateLibrary()
         {
             List<Book> retrievedList = await _dataService.RetrieveLibrary(CurrentUser.User.UserId);
             ConvertBookToBVMAndPopulate(retrievedList);
         }
+
+        // Converting from book objects (retrived by the dataservice) to BookViewModels that are then ready to be shown for the views that needs them.
         public void ConvertBookToBVMAndPopulate(List<Book> bookList)
         {
             if (CurrentUser != null)
@@ -65,6 +51,7 @@ namespace BookBuddy.ViewModels
             }
         }
 
+        // This command is associated with the Log In button and will set properties of CurrentUser to the User properties of what was retrieved by the DataService
         [RelayCommand]
         public async Task ButtonLogIn()
         {

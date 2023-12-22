@@ -17,6 +17,9 @@ namespace BookBuddy.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        // MainViewModel is dependant on various ViewModels. 
+        // These ViewModels are being set up as observableproperties, and then set in the constructor. 
+        // MainViewModel now serves as a hub for all ViewModels, and the various pages can access the ViewModels associated with the pages (through name)
         private readonly DataService _dataService;
         [ObservableProperty]
         private UserViewModel _currentUser;
@@ -35,6 +38,7 @@ namespace BookBuddy.ViewModels
 
         public MainViewModel(IDBAccess DBAccess)
         {
+            // The various dependencies are injected onto the instantiated ViewModels 
             _dataService = new DataService(DBAccess);
             CurrentUser = new UserViewModel();
             CreateUserVM = new(_dataService);

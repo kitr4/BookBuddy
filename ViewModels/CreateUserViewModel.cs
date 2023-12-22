@@ -13,6 +13,8 @@ namespace BookBuddy.ViewModels
 {
     public partial class CreateUserViewModel : ObservableObject
     {
+
+        // Dependency
         private readonly DataService _dataService;
 
         public CreateUserViewModel(DataService DS)
@@ -22,6 +24,7 @@ namespace BookBuddy.ViewModels
 
         public DataService DataService { get { return _dataService; } }
 
+        // Observable properties 
         [ObservableProperty]
         private string? _username;
         [ObservableProperty]
@@ -34,7 +37,6 @@ namespace BookBuddy.ViewModels
         private string? _email;
 
         
-
         private bool _isValidated = false;
         public bool isValidated
         {
@@ -42,9 +44,7 @@ namespace BookBuddy.ViewModels
             set => _isValidated = value;
         }
 
-        // TO-DO:
-        // Make selection of birthdate logic
-     
+        // Nullifies the fields of Create User if validationprocess of creating user (eg. username was not already found in database) It is being nullified, so that if CreateUser page is navigated to in same app lifetime, the fields wont be filled out
         public void NullifyFields()
         {
             if (isValidated)
@@ -56,6 +56,8 @@ namespace BookBuddy.ViewModels
                 this.IdenticalPassword = "";
             }
         }
+
+        // If passwords did not match, or user already did exist in database (by email or username), bool false/true is returned respectively and isValidated takes the value of this in the ButtonCreateUserCommand.
         private async Task<bool> CreateUserValidation(string username, string email, string password1, string password2)
         {
             if (password1 != password2)
@@ -76,7 +78,9 @@ namespace BookBuddy.ViewModels
             return true;
         }
 
-        // Method called when the "Create User" button is clicked
+        
+
+        // Nullify, but bound up on a backbutton with no validation bool.
         [RelayCommand]
         private void ButtonBack()
         {
@@ -86,6 +90,9 @@ namespace BookBuddy.ViewModels
             this.Email = "";
             this.IdenticalPassword = "";
         }
+
+        // Method called when the "Create User" button is clicked
+        // if validation bool is set to true, it means that the credentials were valid, and no user was found, and based on this, dataservice saves these credentials in the database on the user table.
         [RelayCommand]
         private async Task ButtonCreateUser()
         {
