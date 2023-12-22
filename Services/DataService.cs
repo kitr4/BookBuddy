@@ -21,33 +21,6 @@ namespace BookBuddy.Services
         }
         public IDBAccess DB { get { return _db; } }
 
-        //public async Task<bool> IfUserExists(string username, string email)
-        //{
-        //    return await Task.Run(() =>
-        //    {
-        //        using (connection = new SqlConnection(connectionString))
-        //        {
-        //            connection.Open();
-        //            using (SqlCommand command = new SqlCommand("spIfUserExists", connection))
-        //            {
-        //                command.CommandType = CommandType.StoredProcedure;
-        //                command.Parameters.AddWithValue("@Username", username);
-        //                command.Parameters.AddWithValue("@Password", email);
-
-        //                // Only returns one, as the column "Username" has the constraint "UNIQUE" in the SQL data table.
-        //                using (SqlDataReader reader = command.ExecuteReader())
-        //                {
-        //                    if (reader.HasRows)
-        //                        return true;
-        //                    else
-        //                        return false;
-        //                }
-        //            }
-        //        }
-        //    });
-        //}
-
-
         public async Task<bool> IfUserExists(string username, string email)
         {
             var parameters = new { Username = username, Email = email };
@@ -197,23 +170,5 @@ namespace BookBuddy.Services
             }
             return authorResults;
         }
-
-    
-        //public async Task<ObservableCollection<Book>> SearchBook(Book currentBook)
-        //{
-        //    ObservableCollection<Book> booklist = new();
-        //    var books = await DB.LoadData<Book, dynamic>("spSearchBook", new 
-        //    { Title = currentBook.Title, 
-        //        Description = currentBook.Description, 
-        //        Genre = currentBook.Genre, Year = 
-        //        currentBook.Year 
-        //    });
-        //    foreach (var book in books)
-        //    {
-        //        booklist.Add(book);
-        //    }
-        //    return booklist;
-        //}
-
     }
 }

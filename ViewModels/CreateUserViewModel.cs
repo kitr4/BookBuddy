@@ -32,8 +32,6 @@ namespace BookBuddy.ViewModels
         private string? _identicalPassword;
         [ObservableProperty]
         private string? _email;
-        [ObservableProperty]
-        private DateTime _birthdate = DateTime.Now;
 
         
 
