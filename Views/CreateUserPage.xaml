@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="BookBuddy">
+      Title="BookBuddy" Background="White">
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <Style x:Key="CustomButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -143,5 +143,110 @@
             VerticalAlignment="Top" 
             Width="277" 
             Height="20"/>
+    </Grid>-->
+
+    <Grid>
+        <StackPanel Width="720" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Canvas Width=" 420">
+                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\booky-greet.png" Width="32" Height="Auto" Canvas.Top="8" Canvas.Right="58"/>
+            </Canvas>
+            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 0 0 64">
+                <Image Source="C:\Users\nicom\Source\Repos\kitr4\BookBuddy\Resources\Images\bookbuddy-logo.png" Width="240" Height="Auto" HorizontalAlignment="Stretch"/>
+            </DockPanel>
+
+            <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
+                <Label Width="132" Content="Username: * " FontSize="14" HorizontalContentAlignment="Right"/>
+                <TextBox Width="320" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Width="132"></Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
+                <Label Width="132" Content="E-mail: * " FontSize="14" HorizontalContentAlignment="Right"/>
+                <TextBox Width="320" Height="32" VerticalAlignment="Center" TextAlignment="Center" Padding="6" Background="{x:Null}">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Width="132"></Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
+                <Label Width="132" Content="Password: * " FontSize="14" HorizontalContentAlignment="Right"></Label>
+                <PasswordBox Width="320" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
+                    <PasswordBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </PasswordBox.Resources>
+                </PasswordBox>
+                <Label Width="132"></Label>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Margin="0 0 0 24">
+                <Label Width="132" Content="Repeat password: * " FontSize="14" HorizontalContentAlignment="Right"></Label>
+                <PasswordBox Width="320" Height="32" HorizontalContentAlignment="Center" Padding="6" Background="{x:Null}">
+                    <PasswordBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </PasswordBox.Resources>
+                </PasswordBox>
+                <Label Width="132"></Label>
+            </DockPanel>
+
+            <DockPanel Width="320" Height="32" Margin="0 0 0 32">
+                <CheckBox Margin="0 0 8 0" VerticalAlignment="Center"></CheckBox>
+                <TextBlock Height="32" FontSize="14" Padding="0 5 0 0">
+                    I agree to the
+                    <Hyperlink NavigateUri="#">
+                        <TextBlock Text="Terms and Conditions" FontSize="14">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Hyperlink>. *
+                </TextBlock>
+            </DockPanel>
+
+            <DockPanel Width="320" HorizontalAlignment="Center">
+                <Button Width="120" Height="36" Content="Create User" Margin="0 0 12 0" FontSize="13" DockPanel.Dock="Left">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <TextBlock Width="120" Height="36" TextAlignment="Center" Padding="0 8 0 0" Margin="12 0 0 0" HorizontalAlignment="Right">
+                    <Hyperlink NavigateUri="#">
+                        <TextBlock Text="Cancel" FontSize="14">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 4">
+            <Label x:Name="copyrightText" Content="Copyright &#169; 2023 The EJNar Group. All rights reserved." Foreground="#606060"></Label>
+        </StackPanel>
     </Grid>
 </Page>
