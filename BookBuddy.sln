@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookBuddy", "BookBuddy.csproj", "{DEE165A8-7C1C-4ACC-B1B3-840C3C10B938}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_MainViewModel", "..\UnitTest_MainViewModel\UnitTest_MainViewModel.csproj", "{340A93CD-C29F-4406-AA82-0F498E5125B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DEE165A8-7C1C-4ACC-B1B3-840C3C10B938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEE165A8-7C1C-4ACC-B1B3-840C3C10B938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEE165A8-7C1C-4ACC-B1B3-840C3C10B938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340A93CD-C29F-4406-AA82-0F498E5125B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340A93CD-C29F-4406-AA82-0F498E5125B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340A93CD-C29F-4406-AA82-0F498E5125B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340A93CD-C29F-4406-AA82-0F498E5125B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
